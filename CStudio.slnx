@@ -1,0 +1,7 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/CStudio.App/CStudio.App.csproj" />
+    <Project Path="src/CStudio.Core/CStudio.Core.csproj" />
+    <Project Path="src/CStudio.Mock/CStudio.Mock.csproj" />
+  </Folder>
+</Solution>
