@@ -1,0 +1,45 @@
+<svg width="1600" height="980" viewBox="0 0 1600 980" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1600" height="980" fill="#10141D"/>
+  <rect x="0" y="0" width="1600" height="30" fill="#171D2A"/>
+  <rect x="0" y="950" width="1600" height="30" fill="#0F141D"/>
+  <rect x="0" y="30" width="52" height="920" fill="#111722"/>
+  <rect x="62" y="40" width="280" height="880" rx="8" fill="#181E2A" stroke="#2E3648"/>
+  <rect x="358" y="40" width="920" height="880" rx="8" fill="#121722" stroke="#2E3648"/>
+  <rect x="1290" y="40" width="294" height="880" rx="8" fill="#181D28" stroke="#2E3648"/>
+
+  <text x="8" y="20" fill="#F5F7FA" font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="700">cstudio</text>
+  <text x="84" y="20" fill="#D6DDEA" font-family="Segoe UI, Arial, sans-serif" font-size="13">File</text>
+  <text x="122" y="20" fill="#D6DDEA" font-family="Segoe UI, Arial, sans-serif" font-size="13">Workspace</text>
+  <text x="202" y="20" fill="#D6DDEA" font-family="Segoe UI, Arial, sans-serif" font-size="13">Window</text>
+  <text x="258" y="20" fill="#D6DDEA" font-family="Segoe UI, Arial, sans-serif" font-size="13">Tools</text>
+  <text x="302" y="20" fill="#D6DDEA" font-family="Segoe UI, Arial, sans-serif" font-size="13">Help</text>
+  <text x="370" y="20" fill="#8D98AE" font-family="Segoe UI, Arial, sans-serif" font-size="13">RenderLab / Workspace Overview</text>
+
+  <rect x="1310" y="6" width="92" height="18" rx="6" fill="#20283A" stroke="#2E3648"/>
+  <rect x="1408" y="6" width="92" height="18" rx="6" fill="#20283A" stroke="#2E3648"/>
+  <rect x="1506" y="6" width="78" height="18" rx="6" fill="#20283A" stroke="#2E3648"/>
+  <text x="1328" y="19" fill="#7B8AA6" font-family="Segoe UI, Arial, sans-serif" font-size="11">Workspace</text>
+  <text x="1429" y="19" fill="#8CA6D8" font-family="Segoe UI, Arial, sans-serif" font-size="11">Documents</text>
+  <text x="1514" y="19" fill="#D7BE6A" font-family="Segoe UI, Arial, sans-serif" font-size="11">Contract Shell</text>
+
+  <rect x="372" y="40" width="892" height="36" fill="#161C28"/>
+  <text x="388" y="63" fill="#F5F7FA" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="700">Dock Host</text>
+  <text x="1080" y="63" fill="#6E7A90" font-family="Segoe UI, Arial, sans-serif" font-size="12">Adapter-ready mock document workspace</text>
+
+  <rect x="372" y="142" width="892" height="554" fill="#171D29"/>
+  <text x="392" y="184" fill="#F6F8FB" font-family="Segoe UI, Arial, sans-serif" font-size="25" font-weight="700">Workspace Overview</text>
+  <text x="392" y="210" fill="#7E8CA4" font-family="Segoe UI, Arial, sans-serif" font-size="13">GPU-Reshape Studio inspired shell</text>
+  <text x="392" y="264" fill="#C5CDDB" font-family="Consolas, monospace" font-size="18">CStudio Sprint 02 shell contracts.</text>
+  <text x="392" y="300" fill="#C5CDDB" font-family="Consolas, monospace" font-size="18">The shell no longer depends directly on mock data creation</text>
+  <text x="392" y="336" fill="#C5CDDB" font-family="Consolas, monospace" font-size="18">inside the main view model.</text>
+  <text x="392" y="390" fill="#C5CDDB" font-family="Consolas, monospace" font-size="18">Instead, it is being shifted toward adapter-ready service contracts.</text>
+
+  <rect x="372" y="696" width="892" height="210" fill="#141925"/>
+  <text x="388" y="720" fill="#AAB4C8" font-family="Segoe UI, Arial, sans-serif" font-size="12" font-weight="700">LOG</text>
+  <text x="388" y="760" fill="#7F8AA0" font-family="Segoe UI, Arial, sans-serif" font-size="14">09:00:06</text>
+  <text x="470" y="760" fill="#D6C37F" font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="700">INFO</text>
+  <text x="530" y="760" fill="#C8D0DD" font-family="Segoe UI, Arial, sans-serif" font-size="14">Sprint 02 shell contract services active</text>
+
+  <text x="8" y="968" fill="#96A3BA" font-family="Segoe UI, Arial, sans-serif" font-size="12">Workspace: RenderLab   Document: Workspace Overview   Detached Backend</text>
+  <text x="1266" y="968" fill="#6E7A90" font-family="Segoe UI, Arial, sans-serif" font-size="12">Discovery Idle   Contracts Active   Sprint 02</text>
+</svg>

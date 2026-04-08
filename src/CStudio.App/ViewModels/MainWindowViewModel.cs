@@ -1,6 +1,7 @@
-﻿using System.Collections.ObjectModel;
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using CStudio.Core.Models;
-using CStudio.Mock;
+using CStudio.Core.Services;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 
@@ -9,48 +10,51 @@ namespace CStudio.App.ViewModels;
 public partial class MainWindowViewModel : ViewModelBase
 {
     public MainWindowViewModel()
+        : this(
+            new Mock.MockWorkspaceService(),
+            new Mock.MockDocumentService(),
+            new Mock.MockSelectionService(),
+            new Mock.MockPropertyPanelService(),
+            new Mock.MockLogService(),
+            new Mock.MockShellChromeService())
     {
-        var seedService = new StudioSeedService();
+    }
 
-        Workspace = new ObservableCollection<WorkspaceNode>(seedService.GetWorkspace());
-        Documents = new ObservableCollection<DocumentTab>(seedService.GetDocuments());
-        Properties = new ObservableCollection<PropertyEntry>(seedService.GetProperties());
-        Logs = new ObservableCollection<LogEntry>(seedService.GetLogs());
-        Menus = new ObservableCollection<ShellMenuItem>
+    private readonly ISelectionService _selectionService;
+    private readonly IPropertyPanelService _propertyPanelService;
+    private readonly IShellChromeService _shellChromeService;
+
+    public MainWindowViewModel(
+        IWorkspaceService workspaceService,
+        IDocumentService documentService,
+        ISelectionService selectionService,
+        IPropertyPanelService propertyPanelService,
+        ILogService logService,
+        IShellChromeService shellChromeService)
+    {
+        _selectionService = selectionService;
+        _propertyPanelService = propertyPanelService;
+        _shellChromeService = shellChromeService;
+
+        Workspace = new ObservableCollection<WorkspaceNode>(workspaceService.GetWorkspace());
+        Documents = new ObservableCollection<DocumentTab>(documentService.GetDocuments());
+        Properties = [];
+        Logs = new ObservableCollection<LogEntry>(logService.GetLogs());
+        Menus = new ObservableCollection<ShellMenuItem>(shellChromeService.GetMenus());
+        ActionBadges = new ObservableCollection<ShellBadge>(shellChromeService.GetActionBadges());
+        LeftStatus = [];
+        RightStatus = new ObservableCollection<ShellBadge>(shellChromeService.GetRightStatus());
+
+        WindowTitle = shellChromeService.GetWindowTitle();
+        Subtitle = shellChromeService.GetSubtitle();
+        StatusText = shellChromeService.GetStatusText();
+
+        _selectionService.SelectedDocumentChanged += HandleSelectedDocumentChanged;
+
+        if (Documents.Count > 0)
         {
-            new("File"),
-            new("Workspace"),
-            new("Window"),
-            new("Tools"),
-            new("Help")
-        };
-
-        LeftStatus = new ObservableCollection<string>
-        {
-            "Workspace: RenderLab",
-            "Mock Session",
-            "Detached Backend"
-        };
-
-        RightStatus = new ObservableCollection<ShellBadge>
-        {
-            new("Discovery Idle", "#6E7A90"),
-            new("Bus Mode", "#8CA6D8"),
-            new("Sprint 01", "#D7BE6A")
-        };
-
-        ActionBadges = new ObservableCollection<ShellBadge>
-        {
-            new("Workspace", "#7B8AA6"),
-            new("Documents", "#8CA6D8"),
-            new("Mock Runtime", "#D7BE6A")
-        };
-
-        SelectedDocument = Documents[0];
-        SelectedWorkspaceLabel = "RenderLab / Workspace Overview";
-        WindowTitle = "cstudio";
-        Subtitle = "GPU-Reshape Studio inspired shell";
-        StatusText = "Sprint 01 shell parity / mock data";
+            _selectionService.SelectDocument(Documents[0]);
+        }
     }
 
     public string WindowTitle { get; }
@@ -76,10 +80,10 @@ public partial class MainWindowViewModel : ViewModelBase
     public ObservableCollection<ShellBadge> RightStatus { get; }
 
     [ObservableProperty]
-    private DocumentTab selectedDocument;
+    private DocumentTab selectedDocument = null!;
 
     [ObservableProperty]
-    private string selectedWorkspaceLabel;
+    private string selectedWorkspaceLabel = string.Empty;
 
     [RelayCommand]
     private void ActivateDocument(DocumentTab? document)
@@ -89,6 +93,30 @@ public partial class MainWindowViewModel : ViewModelBase
             return;
         }
 
-        SelectedDocument = document;
+        _selectionService.SelectDocument(document);
+    }
+
+    private void HandleSelectedDocumentChanged(DocumentTab? selectedDocument)
+    {
+        if (selectedDocument is null)
+        {
+            return;
+        }
+
+        SelectedDocument = selectedDocument;
+        SelectedWorkspaceLabel = _shellChromeService.GetWorkspaceLabel(selectedDocument);
+
+        ReplaceContents(Properties, _propertyPanelService.GetProperties(selectedDocument));
+        ReplaceContents(LeftStatus, _shellChromeService.GetLeftStatus(selectedDocument));
+    }
+
+    private static void ReplaceContents<T>(ObservableCollection<T> target, IReadOnlyList<T> items)
+    {
+        target.Clear();
+
+        foreach (var item in items)
+        {
+            target.Add(item);
+        }
     }
 }

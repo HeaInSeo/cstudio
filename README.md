@@ -8,14 +8,14 @@ Korean version:
 
 ## Current Scope
 
-Sprint 1 is completed. Current delivered baseline:
+Sprint 2 is completed. Current delivered baseline:
 
 - main window
 - workspace/navigation shell
 - center document host
 - properties panel
 - log and status regions
-- mock data only
+- adapter-ready shell contracts over mock implementations
 
 ## Reference
 
