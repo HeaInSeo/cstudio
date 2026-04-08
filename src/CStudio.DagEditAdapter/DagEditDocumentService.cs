@@ -49,6 +49,7 @@ public sealed class DagEditDocumentService : IDocumentService
 
         return
         [
+            new DocumentTab("Dag Canvas", "Embedded DagEdit editor", "Live DagEdit canvas embedded in the cstudio shell.", new DagEditDocumentView(_context)),
             new DocumentTab("Dag Graph Overview", "DagEdit adapter", graphSummary),
             new DocumentTab("Viewport State", "DagEdit adapter", viewportSummary),
             new DocumentTab("Connection Snapshot", "DagEdit adapter", connectionSummary)

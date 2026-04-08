@@ -1,3 +1,3 @@
 namespace CStudio.Core.Models;
 
-public sealed record DocumentTab(string Title, string Subtitle, string Content);
+public sealed record DocumentTab(string Title, string Subtitle, string Content, object? ContentView = null);

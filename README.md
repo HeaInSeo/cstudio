@@ -8,7 +8,7 @@ Korean version:
 
 ## Current Scope
 
-Sprint 3 is completed. Current delivered baseline:
+Sprint 4 is completed. Current delivered baseline:
 
 - main window
 - workspace/navigation shell
@@ -17,6 +17,7 @@ Sprint 3 is completed. Current delivered baseline:
 - log and status regions
 - adapter-ready shell contracts over mock implementations
 - first DagEdit-backed adapter path
+- embedded DagEdit canvas inside the center document host
 
 ## Reference
 

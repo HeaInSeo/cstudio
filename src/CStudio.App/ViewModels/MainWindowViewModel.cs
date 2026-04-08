@@ -83,6 +83,12 @@ public partial class MainWindowViewModel : ViewModelBase
     private DocumentTab selectedDocument = null!;
 
     [ObservableProperty]
+    private object? selectedDocumentView;
+
+    [ObservableProperty]
+    private bool showSelectedDocumentText;
+
+    [ObservableProperty]
     private string selectedWorkspaceLabel = string.Empty;
 
     [RelayCommand]
@@ -104,6 +110,8 @@ public partial class MainWindowViewModel : ViewModelBase
         }
 
         SelectedDocument = selectedDocument;
+        SelectedDocumentView = selectedDocument.ContentView;
+        ShowSelectedDocumentText = selectedDocument.ContentView is null;
         SelectedWorkspaceLabel = _shellChromeService.GetWorkspaceLabel(selectedDocument);
 
         ReplaceContents(Properties, _propertyPanelService.GetProperties(selectedDocument));

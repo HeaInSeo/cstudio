@@ -167,7 +167,10 @@
                 <TextBlock Text="{Binding SelectedDocument.Title}" FontSize="22" FontWeight="Bold" Foreground="#F6F8FB" />
                 <TextBlock Text="{Binding Subtitle}" Foreground="#7E8CA4" />
               </StackPanel>
-              <ScrollViewer Grid.Row="1">
+              <ContentControl Grid.Row="1"
+                              Content="{Binding SelectedDocumentView}"
+                              IsVisible="{Binding !ShowSelectedDocumentText}" />
+              <ScrollViewer Grid.Row="1" IsVisible="{Binding ShowSelectedDocumentText}">
                 <TextBlock Text="{Binding SelectedDocument.Content}" Foreground="#C5CDDB" FontFamily="Cascadia Code, JetBrains Mono, Consolas" TextWrapping="Wrap" />
               </ScrollViewer>
             </Grid>
