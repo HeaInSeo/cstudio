@@ -2,15 +2,19 @@
 
 `cstudio` is a product-neutral Avalonia desktop shell inspired by the `GPU-Reshape` Studio UI and intended as a stepping stone toward future `DagEdit` integration.
 
+Korean version:
+
+- [README.ko.md](README.ko.md)
+
 ## Current Scope
 
-Sprint 0 builds the shell foundation:
+Sprint 1 is completed. Current delivered baseline:
 
 - main window
-- left workspace tree
-- center document tabs
-- right properties panel
-- bottom log panel
+- workspace/navigation shell
+- center document host
+- properties panel
+- log and status regions
 - mock data only
 
 ## Reference
@@ -24,3 +28,8 @@ Non-UI configuration references:
 - `DagEdit`
 - `NodeKit`
 - `virtualcanvas-avalonia`
+
+## Planning
+
+- [Roadmap (EN)](docs/ROADMAP.en.md)
+- [로드맵 (KO)](docs/ROADMAP.ko.md)

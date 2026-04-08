@@ -7,13 +7,14 @@
         mc:Ignorable="d"
         x:Class="CStudio.App.Views.MainWindow"
         x:DataType="vm:MainWindowViewModel"
-        Width="1480"
-        Height="920"
+        Width="1500"
+        Height="825"
         MinWidth="1180"
         MinHeight="760"
         Background="#131722"
         Icon="/Assets/avalonia-logo.ico"
-        Title="{Binding WindowTitle}">
+        Title="{Binding WindowTitle}"
+        FontFamily="Segoe UI, Inter, Arial">
 
   <Design.DataContext>
     <vm:MainWindowViewModel />
@@ -31,41 +32,74 @@
       <Setter Property="Foreground" Value="#AAB4C8" />
       <Setter Property="LetterSpacing" Value="1.4" />
     </Style>
+    <Style Selector="Border.tab-active">
+      <Setter Property="Background" Value="#212B3B" />
+      <Setter Property="BorderBrush" Value="#4A638A" />
+      <Setter Property="BorderThickness" Value="1" />
+    </Style>
+    <Style Selector="Border.badge">
+      <Setter Property="CornerRadius" Value="6" />
+      <Setter Property="Padding" Value="10,6" />
+    </Style>
   </Window.Styles>
 
-  <Grid RowDefinitions="72,48,*,170,30" Background="#131722">
-    <Border Grid.Row="0" Background="#171D2A" BorderBrush="#2A3142" BorderThickness="0,0,0,1">
-      <Grid ColumnDefinitions="*,Auto" Margin="22,14">
-        <StackPanel Spacing="4">
-          <TextBlock Text="{Binding WindowTitle}" FontSize="28" FontWeight="Bold" Foreground="#F5F7FA" />
-          <TextBlock Text="{Binding Subtitle}" Foreground="#8D98AE" FontSize="13" />
-        </StackPanel>
-        <StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="8" VerticalAlignment="Center">
-          <Border Classes="chrome" Background="#20283A" Padding="12,8">
-            <TextBlock Text="Workspace" Foreground="#D5DDEA" />
-          </Border>
-          <Border Classes="chrome" Background="#273348" Padding="12,8">
-            <TextBlock Text="Documents" Foreground="#D5DDEA" />
-          </Border>
-          <Border Classes="chrome" Background="#5C4A1A" BorderBrush="#806A26" Padding="12,8">
-            <TextBlock Text="Mock Runtime" Foreground="#F3D98B" />
-          </Border>
-        </StackPanel>
+  <Grid RowDefinitions="30,*,25" Background="#131722">
+    <Border Grid.Row="0" Background="#171D2A" BorderBrush="#252D3E" BorderThickness="0,0,0,1">
+      <Grid ColumnDefinitions="Auto,Auto,*,Auto" Margin="8,0,10,0">
+        <TextBlock VerticalAlignment="Center" Text="cstudio" FontWeight="Bold" Foreground="#F5F7FA" />
+        <ItemsControl Grid.Column="1" Margin="14,0,0,0" VerticalAlignment="Center" ItemsSource="{Binding Menus}">
+          <ItemsControl.ItemsPanel>
+            <ItemsPanelTemplate>
+              <StackPanel Orientation="Horizontal" Spacing="16" />
+            </ItemsPanelTemplate>
+          </ItemsControl.ItemsPanel>
+          <ItemsControl.ItemTemplate>
+            <DataTemplate x:DataType="models:ShellMenuItem">
+              <TextBlock Text="{Binding Header}" Foreground="#D6DDEA" />
+            </DataTemplate>
+          </ItemsControl.ItemTemplate>
+        </ItemsControl>
+        <TextBlock Grid.Column="2"
+                   Margin="24,0,0,0"
+                   VerticalAlignment="Center"
+                   Foreground="#8D98AE"
+                   Text="{Binding SelectedWorkspaceLabel}" />
+        <ItemsControl Grid.Column="3" VerticalAlignment="Center" ItemsSource="{Binding ActionBadges}">
+          <ItemsControl.ItemsPanel>
+            <ItemsPanelTemplate>
+              <StackPanel Orientation="Horizontal" Spacing="6" />
+            </ItemsPanelTemplate>
+          </ItemsControl.ItemsPanel>
+          <ItemsControl.ItemTemplate>
+            <DataTemplate x:DataType="models:ShellBadge">
+              <Border Classes="badge chrome" Background="#20283A">
+                <TextBlock Text="{Binding Text}" Foreground="{Binding Accent}" FontSize="12" />
+              </Border>
+            </DataTemplate>
+          </ItemsControl.ItemTemplate>
+        </ItemsControl>
       </Grid>
     </Border>
 
-    <Border Grid.Row="1" Background="#151A26" BorderBrush="#252D3E" BorderThickness="0,0,0,1">
-      <StackPanel Orientation="Horizontal" Spacing="18" Margin="22,0" VerticalAlignment="Center">
-        <TextBlock Text="File" Foreground="#D6DDEA" />
-        <TextBlock Text="Workspace" Foreground="#D6DDEA" />
-        <TextBlock Text="Window" Foreground="#D6DDEA" />
-        <TextBlock Text="Tools" Foreground="#D6DDEA" />
-        <TextBlock Text="Help" Foreground="#D6DDEA" />
-      </StackPanel>
-    </Border>
+    <Grid Grid.Row="1" ColumnDefinitions="52,280,6,*,6,320" Margin="0">
+      <Border Grid.Column="0" Background="#111722" BorderBrush="#252D3E" BorderThickness="0,0,1,0">
+        <StackPanel Margin="0,14,0,0" Spacing="10" HorizontalAlignment="Center">
+          <Border Width="34" Height="34" CornerRadius="8" Background="#263146">
+            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="W" Foreground="#EAF0F8" FontWeight="Bold" />
+          </Border>
+          <Border Width="34" Height="34" CornerRadius="8" Background="#1B2331">
+            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="D" Foreground="#90A4C4" FontWeight="Bold" />
+          </Border>
+          <Border Width="34" Height="34" CornerRadius="8" Background="#1B2331">
+            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="P" Foreground="#90A4C4" FontWeight="Bold" />
+          </Border>
+          <Border Width="34" Height="34" CornerRadius="8" Background="#1B2331">
+            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="R" Foreground="#90A4C4" FontWeight="Bold" />
+          </Border>
+        </StackPanel>
+      </Border>
 
-    <Grid Grid.Row="2" ColumnDefinitions="290,6,*,6,320" Margin="16,16,16,12">
-      <Border Grid.Column="0" Classes="chrome" Background="#181E2A" Padding="14">
+      <Border Grid.Column="1" Classes="chrome" Background="#181E2A" Padding="14" Margin="10,10,0,10">
         <StackPanel Spacing="12">
           <TextBlock Classes="section-title" Text="Workspace" />
           <ItemsControl ItemsSource="{Binding Workspace}">
@@ -91,10 +125,17 @@
         </StackPanel>
       </Border>
 
-      <GridSplitter Grid.Column="1" ResizeDirection="Columns" Background="#293142" />
+      <GridSplitter Grid.Column="2" ResizeDirection="Columns" Background="#293142" />
 
-      <Border Grid.Column="2" Classes="chrome" Background="#121722" Padding="14">
-        <Grid RowDefinitions="Auto,*" RowSpacing="12">
+      <Border Grid.Column="3" Classes="chrome" Background="#121722" Padding="0" Margin="10,10,0,10">
+        <Grid RowDefinitions="36,Auto,*,190" RowSpacing="0">
+          <Border Background="#161C28" BorderBrush="#252D3E" BorderThickness="0,0,0,1" Padding="14,0">
+            <Grid ColumnDefinitions="Auto,*">
+              <TextBlock VerticalAlignment="Center" Text="Dock Host" Foreground="#F5F7FA" FontWeight="SemiBold" />
+              <TextBlock Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Right" Foreground="#6E7A90" Text="Mock document workspace" />
+            </Grid>
+          </Border>
+
           <ItemsControl ItemsSource="{Binding Documents}">
             <ItemsControl.ItemsPanel>
               <ItemsPanelTemplate>
@@ -103,32 +144,65 @@
             </ItemsControl.ItemsPanel>
             <ItemsControl.ItemTemplate>
               <DataTemplate x:DataType="models:DocumentTab">
-                <Border Background="#1A2230" CornerRadius="8,8,0,0" Padding="12,10" MinWidth="180">
-                  <StackPanel Spacing="2">
-                    <TextBlock Text="{Binding Title}" Foreground="#F2F5F8" FontWeight="SemiBold" />
-                    <TextBlock Text="{Binding Subtitle}" Foreground="#8390A6" FontSize="12" />
-                  </StackPanel>
-                </Border>
+                <Button x:CompileBindings="False"
+                        Command="{Binding DataContext.ActivateDocumentCommand, RelativeSource={RelativeSource AncestorType=Window}}"
+                        CommandParameter="{Binding}"
+                        Background="Transparent"
+                        BorderThickness="0"
+                        Padding="0">
+                  <Border Background="#1A2230" CornerRadius="8,8,0,0" Padding="12,10" MinWidth="180">
+                    <StackPanel Spacing="2">
+                      <TextBlock Text="{Binding Title}" Foreground="#F2F5F8" FontWeight="SemiBold" />
+                      <TextBlock Text="{Binding Subtitle}" Foreground="#8390A6" FontSize="12" />
+                    </StackPanel>
+                  </Border>
+                </Button>
               </DataTemplate>
             </ItemsControl.ItemTemplate>
           </ItemsControl>
 
-          <Border Grid.Row="1" Background="#171D29" CornerRadius="0,8,8,8" Padding="18">
+          <Border Grid.Row="2" Background="#171D29" BorderBrush="#252D3E" BorderThickness="0,1,0,1" Padding="18">
             <Grid RowDefinitions="Auto,*" RowSpacing="12">
-              <TextBlock Text="{Binding SelectedDocument.Title}" FontSize="22" FontWeight="Bold" Foreground="#F6F8FB" />
+              <StackPanel Spacing="2">
+                <TextBlock Text="{Binding SelectedDocument.Title}" FontSize="22" FontWeight="Bold" Foreground="#F6F8FB" />
+                <TextBlock Text="{Binding Subtitle}" Foreground="#7E8CA4" />
+              </StackPanel>
               <ScrollViewer Grid.Row="1">
                 <TextBlock Text="{Binding SelectedDocument.Content}" Foreground="#C5CDDB" FontFamily="Cascadia Code, JetBrains Mono, Consolas" TextWrapping="Wrap" />
               </ScrollViewer>
             </Grid>
           </Border>
+
+          <Border Grid.Row="3" Background="#141925" Padding="14">
+            <Grid RowDefinitions="Auto,*" RowSpacing="12">
+              <TextBlock Classes="section-title" Text="Log" />
+              <ItemsControl Grid.Row="1" ItemsSource="{Binding Logs}">
+                <ItemsControl.ItemTemplate>
+                  <DataTemplate x:DataType="models:LogEntry">
+                    <Grid ColumnDefinitions="72,80,*" Margin="0,0,0,8">
+                      <TextBlock Text="{Binding Timestamp}" Foreground="#7F8AA0" />
+                      <TextBlock Grid.Column="1" Text="{Binding Level}" Foreground="#D6C37F" FontWeight="SemiBold" />
+                      <TextBlock Grid.Column="2" Text="{Binding Message}" Foreground="#C8D0DD" />
+                    </Grid>
+                  </DataTemplate>
+                </ItemsControl.ItemTemplate>
+              </ItemsControl>
+            </Grid>
+          </Border>
         </Grid>
       </Border>
 
-      <GridSplitter Grid.Column="3" ResizeDirection="Columns" Background="#293142" />
+      <GridSplitter Grid.Column="4" ResizeDirection="Columns" Background="#293142" />
 
-      <Border Grid.Column="4" Classes="chrome" Background="#181D28" Padding="14">
+      <Border Grid.Column="5" Classes="chrome" Background="#181D28" Padding="14" Margin="10,10,10,10">
         <StackPanel Spacing="12">
           <TextBlock Classes="section-title" Text="Properties" />
+          <Border Background="#111722" CornerRadius="6" Padding="12">
+            <StackPanel Spacing="4">
+              <TextBlock Text="Selection Snapshot" Foreground="#EAF0F8" FontWeight="SemiBold" />
+              <TextBlock Text="{Binding SelectedDocument.Title}" Foreground="#97A4BB" FontSize="12" />
+            </StackPanel>
+          </Border>
           <ItemsControl ItemsSource="{Binding Properties}">
             <ItemsControl.ItemTemplate>
               <DataTemplate x:DataType="models:PropertyEntry">
@@ -145,27 +219,32 @@
       </Border>
     </Grid>
 
-    <Border Grid.Row="3" Margin="16,0,16,12" Classes="chrome" Background="#141925" Padding="14">
-      <Grid RowDefinitions="Auto,*" RowSpacing="12">
-        <TextBlock Classes="section-title" Text="Log" />
-        <ItemsControl Grid.Row="1" ItemsSource="{Binding Logs}">
+    <Border Grid.Row="2" Background="#0F141D" BorderBrush="#232B3C" BorderThickness="0,1,0,0">
+      <Grid ColumnDefinitions="*,Auto" Margin="8,0">
+        <ItemsControl VerticalAlignment="Center" ItemsSource="{Binding LeftStatus}">
+          <ItemsControl.ItemsPanel>
+            <ItemsPanelTemplate>
+              <StackPanel Orientation="Horizontal" Spacing="12" />
+            </ItemsPanelTemplate>
+          </ItemsControl.ItemsPanel>
           <ItemsControl.ItemTemplate>
-            <DataTemplate x:DataType="models:LogEntry">
-              <Grid ColumnDefinitions="72,80,*" Margin="0,0,0,8">
-                <TextBlock Text="{Binding Timestamp}" Foreground="#7F8AA0" />
-                <TextBlock Grid.Column="1" Text="{Binding Level}" Foreground="#D6C37F" FontWeight="SemiBold" />
-                <TextBlock Grid.Column="2" Text="{Binding Message}" Foreground="#C8D0DD" />
-              </Grid>
+            <DataTemplate>
+              <TextBlock Text="{Binding}" Foreground="#96A3BA" FontSize="12" />
             </DataTemplate>
           </ItemsControl.ItemTemplate>
         </ItemsControl>
-      </Grid>
-    </Border>
-
-    <Border Grid.Row="4" Background="#0F141D" BorderBrush="#232B3C" BorderThickness="0,1,0,0">
-      <Grid ColumnDefinitions="*,Auto" Margin="16,0">
-        <TextBlock VerticalAlignment="Center" Text="{Binding StatusText}" Foreground="#96A3BA" />
-        <TextBlock Grid.Column="1" VerticalAlignment="Center" Text="Reference: GPU-Reshape Studio" Foreground="#6E7A90" />
+        <ItemsControl Grid.Column="1" VerticalAlignment="Center" ItemsSource="{Binding RightStatus}">
+          <ItemsControl.ItemsPanel>
+            <ItemsPanelTemplate>
+              <StackPanel Orientation="Horizontal" Spacing="10" />
+            </ItemsPanelTemplate>
+          </ItemsControl.ItemsPanel>
+          <ItemsControl.ItemTemplate>
+            <DataTemplate x:DataType="models:ShellBadge">
+              <TextBlock Text="{Binding Text}" Foreground="{Binding Accent}" FontSize="12" />
+            </DataTemplate>
+          </ItemsControl.ItemTemplate>
+        </ItemsControl>
       </Grid>
     </Border>
   </Grid>

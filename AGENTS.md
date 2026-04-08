@@ -33,3 +33,5 @@ Before making changes:
 - Record sprint outcomes in `docs/`
 - Publish a screenshot note at the end of each sprint
 - Write down structural decisions when they affect future `DagEdit` integration
+- When the UI changes in a meaningful way, update the GitHub-viewable screenshot documentation and push it
+- Keep screenshot documentation current throughout ongoing UI work, not only at sprint close
