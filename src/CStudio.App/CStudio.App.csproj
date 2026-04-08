@@ -26,6 +26,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\CStudio.Core\CStudio.Core.csproj" />
+    <ProjectReference Include="..\CStudio.DagEditAdapter\CStudio.DagEditAdapter.csproj" />
     <ProjectReference Include="..\CStudio.Mock\CStudio.Mock.csproj" />
   </ItemGroup>
 </Project>

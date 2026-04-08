@@ -2,6 +2,10 @@
   <Folder Name="/src/">
     <Project Path="src/CStudio.App/CStudio.App.csproj" />
     <Project Path="src/CStudio.Core/CStudio.Core.csproj" />
+    <Project Path="src/CStudio.DagEditAdapter/CStudio.DagEditAdapter.csproj" />
     <Project Path="src/CStudio.Mock/CStudio.Mock.csproj" />
   </Folder>
+  <Project Path="../DagEdit/DagEdit.csproj" />
+  <Project Path="../DagEdit/external/virtualcanvas-avalonia/src/VirtualCanvas.Avalonia/VirtualCanvas.Avalonia.csproj" />
+  <Project Path="../DagEdit/external/virtualcanvas-avalonia/src/VirtualCanvas.Core/VirtualCanvas.Core.csproj" />
 </Solution>

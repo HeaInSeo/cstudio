@@ -15,7 +15,8 @@ Korean version:
 - Sprint 00: Completed
 - Sprint 01: Completed
 - Sprint 02: Completed
-- Sprint 03+: Planned / Next
+- Sprint 03: Completed
+- Sprint 04+: Planned / Next
 
 ## Roadmap
 
@@ -24,7 +25,7 @@ Korean version:
 | 00 | Foundation | Create repository, baseline shell, settings, mock-backed app | Completed | Built and pushed |
 | 01 | Shell Parity | Move shell structure closer to `GPU-Reshape Studio` | Completed | Top chrome, dock-host feel, status split |
 | 02 | Shell Contracts | Define adapter-ready workspace/document/service contracts | Completed | Composition root and service boundaries established |
-| 03 | First Adapter Pass | Connect selected shell surfaces to `DagEdit` side data/contracts | Planned | Scope to be narrowed later |
+| 03 | First Adapter Pass | Connect selected shell surfaces to `DagEdit` side data/contracts | Completed | DagEdit-backed adapter project added |
 | 04 | Tooling and Interaction | Improve real interactions, selection flow, and panel sync | Planned | Depends on Sprint 02 output |
 | 05 | Stabilization | Clean-up, packaging direction, test hardening, migration prep | Planned | May split if scope grows |
 
@@ -49,8 +50,8 @@ This rule stays active for all future work unless explicitly changed.
 
 ## Current Focus
 
-Sprint 03 is the next focus area:
+Sprint 04 is the next focus area:
 
-- first `DagEdit`-side adapter pass
-- mapping real app state into shell contracts
-- keeping the shell reusable while introducing real data
+- deeper interaction mapping from DagEdit into shell panels
+- improved tool/document semantics over adapter data
+- keeping the adapter path optional and reusable
