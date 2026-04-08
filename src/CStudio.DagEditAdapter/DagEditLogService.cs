@@ -15,6 +15,12 @@ public sealed class DagEditLogService : ILogService
     public IReadOnlyList<LogEntry> GetLogs()
     {
         var vm = _context.ViewModel;
+        var shellState = _context.ShellStateService;
+
+        if (shellState is not null)
+        {
+            return shellState.Logs;
+        }
 
         return
         [

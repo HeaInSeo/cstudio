@@ -17,7 +17,8 @@ Korean version:
 - Sprint 02: Completed
 - Sprint 03: Completed
 - Sprint 04: Completed
-- Sprint 05+: Planned / Next
+- Sprint 05: Completed
+- Sprint 06+: Planned / Next
 
 ## Roadmap
 
@@ -28,7 +29,7 @@ Korean version:
 | 02 | Shell Contracts | Define adapter-ready workspace/document/service contracts | Completed | Composition root and service boundaries established |
 | 03 | First Adapter Pass | Connect selected shell surfaces to `DagEdit` side data/contracts | Completed | DagEdit-backed adapter project added |
 | 04 | Embedded Canvas | Place a real DagEdit canvas inside the cstudio document host | Completed | Center document area now hosts a live DagEdit editor surface |
-| 05 | Tooling and Interaction | Improve real interactions, selection flow, and panel sync | Planned | Build on Sprint 04 embedded canvas |
+| 05 | Interactive Shell Sync | Feed embedded canvas viewport and selection state into shell panels | Completed | Properties, logs, workspace label, and status now react to live canvas state |
 | 06 | Stabilization | Clean-up, packaging direction, test hardening, migration prep | Planned | May split if scope grows |
 
 ## Sprint Update Rule
@@ -52,8 +53,8 @@ This rule stays active for all future work unless explicitly changed.
 
 ## Current Focus
 
-Sprint 05 is the next focus area:
+Sprint 06 is the next focus area:
 
-- deeper interaction mapping from DagEdit into shell panels
-- selection and viewport state sync from the embedded canvas
-- keeping the adapter path optional and reusable
+- tighten adapter boundaries and reduce duplication around embedded graph seeding
+- decide packaging direction for reusing this shell in DagEdit
+- harden tests and polish visual parity details

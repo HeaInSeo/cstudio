@@ -27,6 +27,7 @@ public partial class App : Application
                     composition.WorkspaceService,
                     composition.DocumentService,
                     composition.SelectionService,
+                    composition.ShellStateService,
                     composition.PropertyPanelService,
                     composition.LogService,
                     composition.ShellChromeService),

@@ -14,6 +14,7 @@ public partial class MainWindowViewModel : ViewModelBase
             new Mock.MockWorkspaceService(),
             new Mock.MockDocumentService(),
             new Mock.MockSelectionService(),
+            new Mock.MockShellStateService(),
             new Mock.MockPropertyPanelService(),
             new Mock.MockLogService(),
             new Mock.MockShellChromeService())
@@ -21,19 +22,24 @@ public partial class MainWindowViewModel : ViewModelBase
     }
 
     private readonly ISelectionService _selectionService;
+    private readonly IShellStateService _shellStateService;
     private readonly IPropertyPanelService _propertyPanelService;
+    private readonly ILogService _logService;
     private readonly IShellChromeService _shellChromeService;
 
     public MainWindowViewModel(
         IWorkspaceService workspaceService,
         IDocumentService documentService,
         ISelectionService selectionService,
+        IShellStateService shellStateService,
         IPropertyPanelService propertyPanelService,
         ILogService logService,
         IShellChromeService shellChromeService)
     {
         _selectionService = selectionService;
+        _shellStateService = shellStateService;
         _propertyPanelService = propertyPanelService;
+        _logService = logService;
         _shellChromeService = shellChromeService;
 
         Workspace = new ObservableCollection<WorkspaceNode>(workspaceService.GetWorkspace());
@@ -50,6 +56,7 @@ public partial class MainWindowViewModel : ViewModelBase
         StatusText = shellChromeService.GetStatusText();
 
         _selectionService.SelectedDocumentChanged += HandleSelectedDocumentChanged;
+        _shellStateService.StateChanged += HandleShellStateChanged;
 
         if (Documents.Count > 0)
         {
@@ -115,7 +122,23 @@ public partial class MainWindowViewModel : ViewModelBase
         SelectedWorkspaceLabel = _shellChromeService.GetWorkspaceLabel(selectedDocument);
 
         ReplaceContents(Properties, _propertyPanelService.GetProperties(selectedDocument));
+        ReplaceContents(Logs, _logService.GetLogs());
         ReplaceContents(LeftStatus, _shellChromeService.GetLeftStatus(selectedDocument));
+        ReplaceContents(RightStatus, _shellChromeService.GetRightStatus());
+    }
+
+    private void HandleShellStateChanged()
+    {
+        if (SelectedDocument is null)
+        {
+            return;
+        }
+
+        ReplaceContents(Properties, _propertyPanelService.GetProperties(SelectedDocument));
+        ReplaceContents(Logs, _logService.GetLogs());
+        ReplaceContents(LeftStatus, _shellChromeService.GetLeftStatus(SelectedDocument));
+        ReplaceContents(RightStatus, _shellChromeService.GetRightStatus());
+        SelectedWorkspaceLabel = _shellChromeService.GetWorkspaceLabel(SelectedDocument);
     }
 
     private static void ReplaceContents<T>(ObservableCollection<T> target, IReadOnlyList<T> items)

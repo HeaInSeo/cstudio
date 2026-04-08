@@ -1,0 +1,95 @@
+<svg width="1280" height="760" viewBox="0 0 1280 760" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1280" height="760" rx="18" fill="#0F141D"/>
+  <rect x="0" y="0" width="1280" height="30" fill="#171D2A"/>
+  <text x="18" y="20" fill="#F5F7FA" font-family="Segoe UI, Arial" font-size="14" font-weight="700">cstudio</text>
+  <text x="108" y="20" fill="#D6DDEA" font-family="Segoe UI, Arial" font-size="13">File</text>
+  <text x="150" y="20" fill="#D6DDEA" font-family="Segoe UI, Arial" font-size="13">Workspace</text>
+  <text x="230" y="20" fill="#D6DDEA" font-family="Segoe UI, Arial" font-size="13">Window</text>
+  <text x="315" y="20" fill="#8D98AE" font-family="Segoe UI, Arial" font-size="13">DagEdit Sample / Dag Canvas / Node / 7ac8f6e2</text>
+  <rect x="1110" y="7" width="68" height="18" rx="6" fill="#20283A" stroke="#2E3648"/>
+  <text x="1122" y="20" fill="#8FD0FF" font-family="Segoe UI, Arial" font-size="11">DagEdit</text>
+  <rect x="1186" y="7" width="78" height="18" rx="6" fill="#20283A" stroke="#2E3648"/>
+  <text x="1199" y="20" fill="#D7E1F0" font-family="Segoe UI, Arial" font-size="11">Live Sync</text>
+
+  <rect x="0" y="30" width="52" height="705" fill="#111722"/>
+  <rect x="10" y="46" width="32" height="32" rx="8" fill="#263146"/>
+  <text x="21" y="66" fill="#EAF0F8" font-family="Segoe UI, Arial" font-size="14" font-weight="700">W</text>
+  <rect x="10" y="88" width="32" height="32" rx="8" fill="#1B2331"/>
+  <text x="21" y="108" fill="#90A4C4" font-family="Segoe UI, Arial" font-size="14" font-weight="700">D</text>
+  <rect x="10" y="130" width="32" height="32" rx="8" fill="#1B2331"/>
+  <text x="20" y="150" fill="#90A4C4" font-family="Segoe UI, Arial" font-size="14" font-weight="700">P</text>
+
+  <rect x="62" y="40" width="270" height="685" rx="8" fill="#181E2A" stroke="#2E3648"/>
+  <text x="78" y="64" fill="#AAB4C8" font-family="Segoe UI, Arial" font-size="12" font-weight="700">WORKSPACE</text>
+  <rect x="78" y="82" width="238" height="108" rx="6" fill="#1E2533"/>
+  <text x="92" y="104" fill="#F1F4F8" font-family="Segoe UI, Arial" font-size="14" font-weight="600">Graph Assets</text>
+  <rect x="92" y="118" width="210" height="22" rx="4" fill="#141A25"/>
+  <text x="102" y="133" fill="#B8C1D4" font-family="Segoe UI, Arial" font-size="12">Dag Canvas</text>
+  <rect x="92" y="148" width="210" height="22" rx="4" fill="#141A25"/>
+  <text x="102" y="163" fill="#B8C1D4" font-family="Segoe UI, Arial" font-size="12">Viewport State</text>
+
+  <rect x="348" y="40" width="602" height="685" rx="8" fill="#121722" stroke="#2E3648"/>
+  <rect x="348" y="40" width="602" height="36" fill="#161C28"/>
+  <text x="364" y="62" fill="#F5F7FA" font-family="Segoe UI, Arial" font-size="14" font-weight="600">Dock Host</text>
+  <text x="784" y="62" fill="#6E7A90" font-family="Segoe UI, Arial" font-size="12">Interactive shell sync from embedded DagEdit</text>
+
+  <rect x="362" y="84" width="180" height="42" rx="8" fill="#223147"/>
+  <text x="376" y="103" fill="#F2F5F8" font-family="Segoe UI, Arial" font-size="13" font-weight="600">Dag Canvas</text>
+  <text x="376" y="118" fill="#8FA2BE" font-family="Segoe UI, Arial" font-size="11">Embedded DagEdit editor</text>
+  <rect x="550" y="84" width="180" height="42" rx="8" fill="#1A2230"/>
+  <text x="564" y="103" fill="#F2F5F8" font-family="Segoe UI, Arial" font-size="13" font-weight="600">Dag Graph Overview</text>
+  <text x="564" y="118" fill="#8390A6" font-family="Segoe UI, Arial" font-size="11">DagEdit adapter</text>
+
+  <rect x="366" y="140" width="566" height="396" rx="6" fill="#171D29" stroke="#252D3E"/>
+  <text x="384" y="173" fill="#F6F8FB" font-family="Segoe UI, Arial" font-size="24" font-weight="700">Dag Canvas</text>
+  <text x="384" y="195" fill="#7E8CA4" font-family="Segoe UI, Arial" font-size="13">Embedded canvas with live shell sync</text>
+  <rect x="384" y="214" width="530" height="36" fill="#111722"/>
+  <text x="398" y="236" fill="#F4F7FB" font-family="Segoe UI, Arial" font-size="13" font-weight="600">DagEdit Canvas</text>
+  <rect x="777" y="221" width="121" height="22" rx="6" fill="#1C2433" stroke="#37445C"/>
+  <text x="792" y="236" fill="#9EB3D6" font-family="Segoe UI, Arial" font-size="11">3 nodes / 2 links</text>
+  <rect x="384" y="250" width="530" height="268" fill="#0E131D"/>
+  <circle cx="478" cy="337" r="34" fill="#30435E"/>
+  <circle cx="635" cy="365" r="34" fill="#35587A" stroke="#FFFFFF" stroke-width="3"/>
+  <circle cx="798" cy="430" r="34" fill="#476E94"/>
+  <path d="M512 344C550 344 567 356 601 362" stroke="#6FA7D9" stroke-width="4" stroke-linecap="round"/>
+  <path d="M669 372C711 380 731 398 764 420" stroke="#6FA7D9" stroke-width="4" stroke-linecap="round"/>
+  <text x="462" y="341" fill="#EAF0F8" font-family="Segoe UI, Arial" font-size="11">N1</text>
+  <text x="619" y="369" fill="#EAF0F8" font-family="Segoe UI, Arial" font-size="11">N2</text>
+  <text x="782" y="434" fill="#EAF0F8" font-family="Segoe UI, Arial" font-size="11">N3</text>
+
+  <rect x="366" y="544" width="566" height="164" fill="#141925"/>
+  <text x="384" y="568" fill="#AAB4C8" font-family="Segoe UI, Arial" font-size="12" font-weight="700">LOG</text>
+  <text x="384" y="596" fill="#7F8AA0" font-family="Segoe UI, Arial" font-size="12">10:10:04</text>
+  <text x="456" y="596" fill="#D6C37F" font-family="Segoe UI, Arial" font-size="12" font-weight="600">SYNC</text>
+  <text x="520" y="596" fill="#C8D0DD" font-family="Segoe UI, Arial" font-size="12">Viewport moved to 160,82</text>
+  <text x="384" y="620" fill="#7F8AA0" font-family="Segoe UI, Arial" font-size="12">10:10:05</text>
+  <text x="456" y="620" fill="#D6C37F" font-family="Segoe UI, Arial" font-size="12" font-weight="600">SELECT</text>
+  <text x="520" y="620" fill="#C8D0DD" font-family="Segoe UI, Arial" font-size="12">Node selected: 7ac8f6e2</text>
+
+  <rect x="966" y="40" width="294" height="685" rx="8" fill="#181D28" stroke="#2E3648"/>
+  <text x="982" y="64" fill="#AAB4C8" font-family="Segoe UI, Arial" font-size="12" font-weight="700">PROPERTIES</text>
+  <rect x="982" y="82" width="262" height="54" rx="6" fill="#111722"/>
+  <text x="996" y="103" fill="#EAF0F8" font-family="Segoe UI, Arial" font-size="13" font-weight="600">Selection Snapshot</text>
+  <text x="996" y="121" fill="#97A4BB" font-family="Segoe UI, Arial" font-size="12">Dag Canvas</text>
+  <text x="982" y="160" fill="#8E9BB0" font-family="Segoe UI, Arial" font-size="12">Selection Kind</text>
+  <rect x="1080" y="146" width="164" height="24" rx="5" fill="#111722"/>
+  <text x="1092" y="162" fill="#EEF2F8" font-family="Segoe UI, Arial" font-size="12">Node</text>
+  <text x="982" y="196" fill="#8E9BB0" font-family="Segoe UI, Arial" font-size="12">Selection Label</text>
+  <rect x="1080" y="182" width="164" height="24" rx="5" fill="#111722"/>
+  <text x="1092" y="198" fill="#EEF2F8" font-family="Segoe UI, Arial" font-size="12">Node / 7ac8f6e2</text>
+  <text x="982" y="232" fill="#8E9BB0" font-family="Segoe UI, Arial" font-size="12">Viewport Location</text>
+  <rect x="1080" y="218" width="164" height="24" rx="5" fill="#111722"/>
+  <text x="1092" y="234" fill="#EEF2F8" font-family="Segoe UI, Arial" font-size="12">160,82</text>
+  <text x="982" y="268" fill="#8E9BB0" font-family="Segoe UI, Arial" font-size="12">Viewport Scale</text>
+  <rect x="1080" y="254" width="164" height="24" rx="5" fill="#111722"/>
+  <text x="1092" y="270" fill="#EEF2F8" font-family="Segoe UI, Arial" font-size="12">1.34</text>
+
+  <rect x="0" y="735" width="1280" height="25" fill="#0F141D"/>
+  <text x="12" y="752" fill="#96A3BA" font-family="Segoe UI, Arial" font-size="12">DagEdit Nodes: 3</text>
+  <text x="145" y="752" fill="#96A3BA" font-family="Segoe UI, Arial" font-size="12">Selection: Node</text>
+  <text x="275" y="752" fill="#96A3BA" font-family="Segoe UI, Arial" font-size="12">Viewport: 160,82</text>
+  <rect x="1074" y="739" width="86" height="18" rx="6" fill="#20283A" stroke="#2E3648"/>
+  <text x="1092" y="752" fill="#8CA6D8" font-family="Segoe UI, Arial" font-size="11">Scale 1.34</text>
+  <rect x="1168" y="739" width="66" height="18" rx="6" fill="#20283A" stroke="#2E3648"/>
+  <text x="1189" y="752" fill="#D7BE6A" font-family="Segoe UI, Arial" font-size="11">Node</text>
+</svg>

@@ -55,6 +55,8 @@ public sealed class DagEditDocumentView : Grid
                 mappedTargetNodeId);
         }
 
+        context.ShellStateService?.AttachInteractiveEditor(editor, editorViewModel);
+
         var titleBlock = new TextBlock
         {
             Text = "DagEdit Canvas",

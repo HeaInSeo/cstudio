@@ -15,6 +15,7 @@ public sealed class DagEditPropertyPanelService : IPropertyPanelService
     public IReadOnlyList<PropertyEntry> GetProperties(DocumentTab? selectedDocument)
     {
         var vm = _context.ViewModel;
+        var shellState = _context.ShellStateService;
 
         return
         [
@@ -22,8 +23,10 @@ public sealed class DagEditPropertyPanelService : IPropertyPanelService
             new PropertyEntry("Source", "DagEdit Adapter"),
             new PropertyEntry("Node Count", vm.NodeCount.ToString()),
             new PropertyEntry("Connection Count", vm.ConnectionCount.ToString()),
-            new PropertyEntry("Viewport Location", vm.ViewportLocation.ToString()),
-            new PropertyEntry("Viewport Scale", vm.ViewportScale.ToString("F2"))
+            new PropertyEntry("Viewport Location", (shellState?.ActiveViewportLocation ?? vm.ViewportLocation).ToString()),
+            new PropertyEntry("Viewport Scale", (shellState?.ActiveViewportScale ?? vm.ViewportScale).ToString("F2")),
+            new PropertyEntry("Selection Kind", shellState?.SelectionKind ?? "Canvas"),
+            new PropertyEntry("Selection Label", shellState?.SelectionLabel ?? "Canvas / None")
         ];
     }
 }

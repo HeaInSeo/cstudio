@@ -12,6 +12,8 @@ public sealed class DagEditShellContext
 
     public DagEditorViewModel ViewModel { get; }
 
+    public DagEditShellStateService? ShellStateService { get; set; }
+
     public static DagEditShellContext CreateSample()
     {
         var vm = new DagEditorViewModel
