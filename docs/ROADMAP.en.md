@@ -2,7 +2,9 @@
 
 ## Purpose
 
-This roadmap tracks the overall delivery plan for `cstudio`, the intermediate shell project meant to reduce future UI migration cost into `DagEdit`.
+This roadmap tracks the overall delivery plan for `cstudio`, the Rider-style workstation shell inspired by `GPU-Reshape/Studio`.
+
+`cstudio` is now treated as an extensible unified workstation that can grow to host pipeline editing, administrator tooling, and future operations surfaces.
 
 This file must be updated at the end of every sprint.
 
@@ -30,7 +32,8 @@ Korean version:
 | 03 | First Adapter Pass | Connect selected shell surfaces to `DagEdit` side data/contracts | Completed | DagEdit-backed adapter project added |
 | 04 | Embedded Canvas | Place a real DagEdit canvas inside the cstudio document host | Completed | Center document area now hosts a live DagEdit editor surface |
 | 05 | Interactive Shell Sync | Feed embedded canvas viewport and selection state into shell panels | Completed | Properties, logs, workspace label, and status now react to live canvas state |
-| 06 | Stabilization | Clean-up, packaging direction, test hardening, migration prep | Planned | May split if scope grows |
+| 06 | Product Reframing | Reframe cstudio as a unified workstation shell with expandable role-based workspaces | Planned | Documentation and architecture direction update |
+| 07 | Stabilization | Clean-up, packaging direction, test hardening, migration prep | Planned | May split if scope grows |
 
 ## Sprint Update Rule
 
@@ -55,6 +58,6 @@ This rule stays active for all future work unless explicitly changed.
 
 Sprint 06 is the next focus area:
 
-- tighten adapter boundaries and reduce duplication around embedded graph seeding
-- decide packaging direction for reusing this shell in DagEdit
-- harden tests and polish visual parity details
+- document the unified workstation direction
+- define role-based workspace boundaries across pipeline, admin, and operations concerns
+- keep the shell open-ended so additional capability areas can be added later
