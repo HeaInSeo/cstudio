@@ -33,7 +33,8 @@ Korean version:
 | 04 | Embedded Canvas | Place a real DagEdit canvas inside the cstudio document host | Completed | Center document area now hosts a live DagEdit editor surface |
 | 05 | Interactive Shell Sync | Feed embedded canvas viewport and selection state into shell panels | Completed | Properties, logs, workspace label, and status now react to live canvas state |
 | 06 | Product Reframing | Reframe cstudio as a unified workstation shell with expandable role-based workspaces | Planned | Documentation and architecture direction update |
-| 07 | Stabilization | Clean-up, packaging direction, test hardening, migration prep | Planned | May split if scope grows |
+| 07 | Static Analysis Guardrails | Apply DagEdit-style warning discipline and analyzer settings to cstudio | Planned | New warning increase must be blocked early |
+| 08 | Stabilization | Clean-up, packaging direction, test hardening, migration prep | Planned | May split if scope grows |
 
 ## Sprint Update Rule
 
@@ -61,3 +62,4 @@ Sprint 06 is the next focus area:
 - document the unified workstation direction
 - define role-based workspace boundaries across pipeline, admin, and operations concerns
 - keep the shell open-ended so additional capability areas can be added later
+- establish DagEdit-inspired static-analysis guardrails

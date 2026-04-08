@@ -38,6 +38,15 @@ The functional scope of `cstudio` is expected to grow over time.
 
 It should be treated as an extensible platform shell that can absorb additional workspaces, panels, and role-specific tools as the product expands.
 
+## Code Quality Guardrail
+
+`cstudio` is adopting the same static-analysis operating direction used in `DagEdit`:
+
+- build-time code style enforcement stays on
+- new warnings must not increase
+- warning reduction is handled as an explicit quality track
+- Rider-visible warnings should trend down over time, not be deferred indefinitely
+
 ## Reference
 
 Primary UI reference:
@@ -57,3 +66,5 @@ Functional/module references:
 - [로드맵 (KO)](docs/ROADMAP.ko.md)
 - [Architecture Direction (EN)](docs/ARCHITECTURE.en.md)
 - [아키텍처 방향 (KO)](docs/ARCHITECTURE.ko.md)
+- [Static Analysis Guardrails (EN)](docs/STATIC_ANALYSIS_GUARDRAILS.en.md)
+- [정적 분석 가드레일 (KO)](docs/STATIC_ANALYSIS_GUARDRAILS.ko.md)

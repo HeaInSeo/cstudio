@@ -19,6 +19,7 @@ Before making changes:
 - Use `GPU-Reshape/Source/UIX/Studio` as the UI reference
 - Do not introduce direct dependencies on `GRS.*`, `Bridge.CLR`, `Message.CLR`, `HostResolver`, or `Discovery`
 - Build the shell against mock data first
+- Follow `DagEdit` static-analysis discipline as the baseline guardrail direction
 - Ask before destructive actions
 
 ## Architecture Guardrails
@@ -27,6 +28,14 @@ Before making changes:
 - Prefer interface-first design for services
 - Keep workspace, documents, tools, properties, and logs reusable
 - Avoid coupling view models to backend protocol types
+
+## Quality Guardrails
+
+- New build-time warnings must not increase
+- Warning reduction work should be tracked separately from feature work when possible
+- Do not weaken analyzer settings to hide findings
+- Prefer Rider-compatible code style that trends toward zero warnings
+- When static-analysis rules change, document the operating policy in `docs/`
 
 ## Documentation
 

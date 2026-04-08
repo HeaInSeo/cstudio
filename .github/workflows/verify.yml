@@ -1,0 +1,123 @@
+name: Verify
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+concurrency:
+  group: verify-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    name: Build and Warning Gate
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - name: Checkout cstudio
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Checkout DagEdit dependency
+        uses: actions/checkout@v4
+        with:
+          repository: HeaInSeo/DagEdit
+          path: external/DagEdit
+          fetch-depth: 0
+          submodules: recursive
+
+      - name: Setup .NET 10
+        uses: actions/setup-dotnet@v5
+        with:
+          dotnet-version: "10.0.x"
+
+      - name: Cache NuGet packages
+        uses: actions/cache@v4
+        with:
+          path: ~/.nuget/packages
+          key: nuget-${{ runner.os }}-${{ hashFiles('**/*.csproj', 'global.json') }}
+          restore-keys: nuget-${{ runner.os }}-
+
+      - name: Restore dependencies
+        run: dotnet restore src/CStudio.App/CStudio.App.csproj /p:DagEditProjectPath=$GITHUB_WORKSPACE/external/DagEdit/DagEdit.csproj
+
+      - name: Build and collect warnings
+        id: build
+        shell: bash
+        run: |
+          dotnet build src/CStudio.App/CStudio.App.csproj \
+            --no-restore \
+            --configuration Release \
+            /p:DagEditProjectPath="$GITHUB_WORKSPACE/external/DagEdit/DagEdit.csproj" \
+            2>&1 | tee /tmp/cstudio-build.txt
+
+          BUILD_EXIT=${PIPESTATUS[0]}
+
+          SA_WARN=$(grep ": warning SA" /tmp/cstudio-build.txt 2>/dev/null | wc -l | tr -d ' ')
+          CS_WARN=$(grep ": warning CS" /tmp/cstudio-build.txt 2>/dev/null | wc -l | tr -d ' ')
+          IDE_WARN=$(grep ": warning IDE" /tmp/cstudio-build.txt 2>/dev/null | wc -l | tr -d ' ')
+          TOTAL_WARN=$((SA_WARN + CS_WARN + IDE_WARN))
+
+          echo "sa_warning_count=$SA_WARN" >> "$GITHUB_OUTPUT"
+          echo "cs_warning_count=$CS_WARN" >> "$GITHUB_OUTPUT"
+          echo "ide_warning_count=$IDE_WARN" >> "$GITHUB_OUTPUT"
+          echo "total_warning_count=$TOTAL_WARN" >> "$GITHUB_OUTPUT"
+
+          if [ "$BUILD_EXIT" -ne 0 ]; then
+            exit "$BUILD_EXIT"
+          fi
+
+      - name: Compare warning count to baseline
+        id: warning_gate
+        shell: bash
+        run: |
+          CURRENT=${{ steps.build.outputs.total_warning_count }}
+
+          if [ ! -f warning-baseline.json ]; then
+            echo "baseline_mode=bootstrap" >> "$GITHUB_OUTPUT"
+            echo "baseline_total=" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          BASELINE=$(python3 -c 'import json; import sys; print(json.load(open("warning-baseline.json"))["total_warning_count"])')
+          echo "baseline_mode=enforced" >> "$GITHUB_OUTPUT"
+          echo "baseline_total=$BASELINE" >> "$GITHUB_OUTPUT"
+
+          if [ "$CURRENT" -gt "$BASELINE" ]; then
+            echo "Warning count regression detected: current=$CURRENT baseline=$BASELINE"
+            exit 1
+          fi
+
+      - name: Upload build log
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cstudio-build-log
+          path: /tmp/cstudio-build.txt
+          retention-days: 14
+
+      - name: Publish summary
+        if: always()
+        shell: bash
+        run: |
+          {
+            echo "## CStudio Verify"
+            echo
+            echo "| Metric | Count |"
+            echo "|---|---:|"
+            echo "| StyleCop warnings | ${{ steps.build.outputs.sa_warning_count || 'n/a' }} |"
+            echo "| Compiler warnings | ${{ steps.build.outputs.cs_warning_count || 'n/a' }} |"
+            echo "| IDE warnings | ${{ steps.build.outputs.ide_warning_count || 'n/a' }} |"
+            echo "| Total warnings | ${{ steps.build.outputs.total_warning_count || 'n/a' }} |"
+            echo "| Baseline mode | ${{ steps.warning_gate.outputs.baseline_mode || 'n/a' }} |"
+            echo "| Baseline total warnings | ${{ steps.warning_gate.outputs.baseline_total || 'n/a' }} |"
+            echo
+            echo "Policy: warning count may decrease or stay flat, but must not increase after the baseline is committed."
+          } >> "$GITHUB_STEP_SUMMARY"

@@ -3,10 +3,11 @@
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <DagEditProjectPath Condition="'$(DagEditProjectPath)' == ''">/opt/dotnet/src/github.com/HeaInSeo/DagEdit/DagEdit.csproj</DagEditProjectPath>
   </PropertyGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\CStudio.Core\CStudio.Core.csproj" />
-    <ProjectReference Include="/opt/dotnet/src/github.com/HeaInSeo/DagEdit/DagEdit.csproj" />
+    <ProjectReference Include="$(DagEditProjectPath)" />
   </ItemGroup>
 </Project>

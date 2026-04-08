@@ -38,6 +38,15 @@
 
 따라서 이 프로젝트는 고정 범위 앱이 아니라, 새로운 워크스페이스와 패널, 권한별 도구를 계속 흡수할 수 있는 확장형 플랫폼 셸로 다뤄야 한다.
 
+## 코드 품질 가드레일
+
+`cstudio`는 `DagEdit`에서 운영 중인 정적 분석 방향을 같은 기준선으로 채택한다.
+
+- 빌드 시 코드 스타일 강제는 계속 유지
+- 새 경고는 증가하면 안 됨
+- 경고 감축은 별도의 품질 트랙으로 운영
+- Rider에서 보이는 경고는 시간이 갈수록 줄어드는 방향으로 관리
+
 ## 참고 기준
 
 주 UI 참고 원본:
@@ -57,3 +66,5 @@
 - [로드맵 (KO)](docs/ROADMAP.ko.md)
 - [Architecture Direction (EN)](docs/ARCHITECTURE.en.md)
 - [아키텍처 방향 (KO)](docs/ARCHITECTURE.ko.md)
+- [Static Analysis Guardrails (EN)](docs/STATIC_ANALYSIS_GUARDRAILS.en.md)
+- [정적 분석 가드레일 (KO)](docs/STATIC_ANALYSIS_GUARDRAILS.ko.md)
