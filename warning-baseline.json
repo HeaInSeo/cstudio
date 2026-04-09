@@ -1,0 +1,6 @@
+{
+  "total_warning_count": 457,
+  "source": "GitHub Actions Verify run 24128316967",
+  "captured_at": "2026-04-08T09:30:44Z",
+  "notes": "Initial baseline after enabling DagEdit-style analyzers for cstudio. Warning count may decrease or stay flat, but must not increase."
+}

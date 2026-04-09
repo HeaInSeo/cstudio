@@ -13,6 +13,9 @@ concurrency:
 permissions:
   contents: read
 
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
 jobs:
   verify:
     name: Build and Warning Gate
@@ -112,12 +115,12 @@ jobs:
             echo
             echo "| Metric | Count |"
             echo "|---|---:|"
-            echo "| StyleCop warnings | ${{ steps.build.outputs.sa_warning_count || 'n/a' }} |"
-            echo "| Compiler warnings | ${{ steps.build.outputs.cs_warning_count || 'n/a' }} |"
-            echo "| IDE warnings | ${{ steps.build.outputs.ide_warning_count || 'n/a' }} |"
-            echo "| Total warnings | ${{ steps.build.outputs.total_warning_count || 'n/a' }} |"
-            echo "| Baseline mode | ${{ steps.warning_gate.outputs.baseline_mode || 'n/a' }} |"
-            echo "| Baseline total warnings | ${{ steps.warning_gate.outputs.baseline_total || 'n/a' }} |"
+            echo "| StyleCop warnings | ${{ steps.build.outputs.sa_warning_count }} |"
+            echo "| Compiler warnings | ${{ steps.build.outputs.cs_warning_count }} |"
+            echo "| IDE warnings | ${{ steps.build.outputs.ide_warning_count }} |"
+            echo "| Total warnings | ${{ steps.build.outputs.total_warning_count }} |"
+            echo "| Baseline mode | ${{ steps.warning_gate.outputs.baseline_mode }} |"
+            echo "| Baseline total warnings | ${{ steps.warning_gate.outputs.baseline_total }} |"
             echo
             echo "Policy: warning count may decrease or stay flat, but must not increase after the baseline is committed."
           } >> "$GITHUB_STEP_SUMMARY"

@@ -39,4 +39,6 @@ If a later batch introduces warnings due to expanded analyzers or new modules, t
 
 ## Follow-Up
 
-The next step after these settings is to commit `warning-baseline.json` from the first confirmed CI run, then keep the warning count flat or lower from that point onward.
+`warning-baseline.json` is now committed from the first confirmed CI run.
+
+From this point onward, the expected rule is simple: the warning count may go down or stay flat, but it must not go up.
