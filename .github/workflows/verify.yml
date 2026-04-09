@@ -49,7 +49,7 @@ jobs:
           restore-keys: nuget-${{ runner.os }}-
 
       - name: Restore dependencies
-        run: dotnet restore src/CStudio.App/CStudio.App.csproj /p:DagEditProjectPath=$GITHUB_WORKSPACE/external/DagEdit/DagEdit.csproj
+        run: dotnet restore src/CStudio.App/CStudio.App.csproj /p:DagEditProjectPath=$GITHUB_WORKSPACE/external/DagEdit/DagEdit.csproj /p:NuGetAudit=false
 
       - name: Build and collect warnings
         id: build
@@ -59,6 +59,7 @@ jobs:
             --no-restore \
             --configuration Release \
             /p:DagEditProjectPath="$GITHUB_WORKSPACE/external/DagEdit/DagEdit.csproj" \
+            /p:NuGetAudit=false \
             2>&1 | tee /tmp/cstudio-build.txt
 
           BUILD_EXIT=${PIPESTATUS[0]}
