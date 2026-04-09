@@ -44,3 +44,9 @@
 `warning-baseline.json`은 이제 GitHub Actions가 쓰는 더 좁은 `cstudio` 소유 경고 범위로 다시 고정됐다.
 
 이제부터의 규칙은 단순하다. `cstudio` 경고 수는 줄거나 유지될 수는 있지만, 증가하면 안 된다.
+
+## 관련 가드레일
+
+의존성 취약점 점검은 이제 `Dependency Audit`로 분리해 다룬다.
+
+[SECURITY_GUARDRAILS.ko.md](./SECURITY_GUARDRAILS.ko.md)를 참고한다.

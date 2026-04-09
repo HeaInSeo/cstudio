@@ -44,3 +44,9 @@ If a later batch introduces warnings due to expanded analyzers or new modules, t
 `warning-baseline.json` is now reset to the narrower `cstudio`-owned warning scope used by GitHub Actions.
 
 From this point onward, the expected rule is simple: the `cstudio` warning count may go down or stay flat, but it must not go up.
+
+## Related Guardrail
+
+Dependency vulnerability checks are now handled separately in `Dependency Audit`.
+
+See [SECURITY_GUARDRAILS.en.md](./SECURITY_GUARDRAILS.en.md).
