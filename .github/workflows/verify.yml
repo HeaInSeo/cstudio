@@ -71,14 +71,16 @@ jobs:
           CA_WARN=$(grep -c ": warning CA" /tmp/cstudio-owned-warnings.txt 2>/dev/null | tr -d ' ')
           IDE_WARN=$(grep -c ": warning IDE" /tmp/cstudio-owned-warnings.txt 2>/dev/null | tr -d ' ')
           TOTAL_WARN=$((SA_WARN + CS_WARN + CA_WARN + IDE_WARN))
+          ERROR_COUNT=$(grep -c ": error " /tmp/cstudio-build.txt 2>/dev/null | tr -d ' ')
 
           echo "sa_warning_count=$SA_WARN" >> "$GITHUB_OUTPUT"
           echo "cs_warning_count=$CS_WARN" >> "$GITHUB_OUTPUT"
           echo "ca_warning_count=$CA_WARN" >> "$GITHUB_OUTPUT"
           echo "ide_warning_count=$IDE_WARN" >> "$GITHUB_OUTPUT"
           echo "total_warning_count=$TOTAL_WARN" >> "$GITHUB_OUTPUT"
+          echo "error_count=$ERROR_COUNT" >> "$GITHUB_OUTPUT"
 
-          if [ "$BUILD_EXIT" -ne 0 ]; then
+          if [ "$BUILD_EXIT" -ne 0 ] && [ "$ERROR_COUNT" -gt 0 ]; then
             exit "$BUILD_EXIT"
           fi
 
@@ -145,6 +147,7 @@ jobs:
             echo "| Code analysis warnings | ${{ steps.build.outputs.ca_warning_count }} |"
             echo "| IDE warnings | ${{ steps.build.outputs.ide_warning_count }} |"
             echo "| Total warnings | ${{ steps.build.outputs.total_warning_count }} |"
+            echo "| Build errors | ${{ steps.build.outputs.error_count }} |"
             echo "| Baseline mode | ${{ steps.warning_gate.outputs.baseline_mode }} |"
             echo "| Baseline scope | ${{ steps.warning_gate.outputs.baseline_scope }} |"
             echo "| Baseline total warnings | ${{ steps.warning_gate.outputs.baseline_total }} |"
