@@ -66,12 +66,12 @@ jobs:
 
           grep -E '(^|.*/)src/CStudio[^:]*: warning (SA|CS|CA|IDE)' /tmp/cstudio-build.txt > /tmp/cstudio-owned-warnings.txt || true
 
-          SA_WARN=$(grep -c ": warning SA" /tmp/cstudio-owned-warnings.txt 2>/dev/null | tr -d ' ')
-          CS_WARN=$(grep -c ": warning CS" /tmp/cstudio-owned-warnings.txt 2>/dev/null | tr -d ' ')
-          CA_WARN=$(grep -c ": warning CA" /tmp/cstudio-owned-warnings.txt 2>/dev/null | tr -d ' ')
-          IDE_WARN=$(grep -c ": warning IDE" /tmp/cstudio-owned-warnings.txt 2>/dev/null | tr -d ' ')
+          SA_WARN=$(( $(grep -c ": warning SA" /tmp/cstudio-owned-warnings.txt 2>/dev/null || true) ))
+          CS_WARN=$(( $(grep -c ": warning CS" /tmp/cstudio-owned-warnings.txt 2>/dev/null || true) ))
+          CA_WARN=$(( $(grep -c ": warning CA" /tmp/cstudio-owned-warnings.txt 2>/dev/null || true) ))
+          IDE_WARN=$(( $(grep -c ": warning IDE" /tmp/cstudio-owned-warnings.txt 2>/dev/null || true) ))
           TOTAL_WARN=$((SA_WARN + CS_WARN + CA_WARN + IDE_WARN))
-          ERROR_COUNT=$(grep -c ": error " /tmp/cstudio-build.txt 2>/dev/null | tr -d ' ')
+          ERROR_COUNT=$(( $(grep -c ": error " /tmp/cstudio-build.txt 2>/dev/null || true) ))
 
           echo "sa_warning_count=$SA_WARN" >> "$GITHUB_OUTPUT"
           echo "cs_warning_count=$CS_WARN" >> "$GITHUB_OUTPUT"
