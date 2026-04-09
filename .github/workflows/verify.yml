@@ -55,23 +55,25 @@ jobs:
         id: build
         shell: bash
         run: |
+          set +e
           dotnet build src/CStudio.App/CStudio.App.csproj \
             --no-restore \
             --configuration Release \
             /p:DagEditProjectPath="$GITHUB_WORKSPACE/external/DagEdit/DagEdit.csproj" \
             /p:NuGetAudit=false \
-            2>&1 | tee /tmp/cstudio-build.txt
-
-          BUILD_EXIT=${PIPESTATUS[0]}
+            > /tmp/cstudio-build.txt 2>&1
+          BUILD_EXIT=$?
+          set -e
 
           grep -E '(^|.*/)src/CStudio[^:]*: warning (SA|CS|CA|IDE)' /tmp/cstudio-build.txt > /tmp/cstudio-owned-warnings.txt || true
+          grep -E '(^|.*/)src/CStudio[^:]*: error ' /tmp/cstudio-build.txt > /tmp/cstudio-owned-errors.txt || true
 
           SA_WARN=$(( $(grep -c ": warning SA" /tmp/cstudio-owned-warnings.txt 2>/dev/null || true) ))
           CS_WARN=$(( $(grep -c ": warning CS" /tmp/cstudio-owned-warnings.txt 2>/dev/null || true) ))
           CA_WARN=$(( $(grep -c ": warning CA" /tmp/cstudio-owned-warnings.txt 2>/dev/null || true) ))
           IDE_WARN=$(( $(grep -c ": warning IDE" /tmp/cstudio-owned-warnings.txt 2>/dev/null || true) ))
           TOTAL_WARN=$((SA_WARN + CS_WARN + CA_WARN + IDE_WARN))
-          ERROR_COUNT=$(( $(grep -c ": error " /tmp/cstudio-build.txt 2>/dev/null || true) ))
+          ERROR_COUNT=$(( $(grep -c ": error " /tmp/cstudio-owned-errors.txt 2>/dev/null || true) ))
 
           echo "sa_warning_count=$SA_WARN" >> "$GITHUB_OUTPUT"
           echo "cs_warning_count=$CS_WARN" >> "$GITHUB_OUTPUT"
@@ -79,6 +81,16 @@ jobs:
           echo "ide_warning_count=$IDE_WARN" >> "$GITHUB_OUTPUT"
           echo "total_warning_count=$TOTAL_WARN" >> "$GITHUB_OUTPUT"
           echo "error_count=$ERROR_COUNT" >> "$GITHUB_OUTPUT"
+
+          if [ -s /tmp/cstudio-owned-errors.txt ]; then
+            echo "cstudio-owned build errors:"
+            cat /tmp/cstudio-owned-errors.txt
+          elif [ -s /tmp/cstudio-owned-warnings.txt ]; then
+            echo "cstudio-owned warnings:"
+            cat /tmp/cstudio-owned-warnings.txt
+          else
+            echo "No cstudio-owned warnings or errors were detected."
+          fi
 
           if [ "$BUILD_EXIT" -ne 0 ] && [ "$ERROR_COUNT" -gt 0 ]; then
             exit "$BUILD_EXIT"
