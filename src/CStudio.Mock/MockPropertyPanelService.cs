@@ -1,3 +1,4 @@
+using System;
 using CStudio.Core.Models;
 using CStudio.Core.Services;
 
@@ -9,7 +10,7 @@ public sealed class MockPropertyPanelService : IPropertyPanelService
     {
         var title = selectedDocument?.Title ?? "None";
 
-        if (title.Contains("Shader"))
+        if (title.Contains("Shader", StringComparison.Ordinal))
         {
             return
             [
@@ -22,7 +23,7 @@ public sealed class MockPropertyPanelService : IPropertyPanelService
             ];
         }
 
-        if (title.Contains("Instrumentation"))
+        if (title.Contains("Instrumentation", StringComparison.Ordinal))
         {
             return
             [

@@ -5,9 +5,9 @@ namespace CStudio.DagEditAdapter;
 
 public sealed class DagEditSelectionService : ISelectionService
 {
-    public DocumentTab? SelectedDocument { get; private set; }
+    public event EventHandler<SelectedDocumentChangedEventArgs>? SelectedDocumentChanged;
 
-    public event Action<DocumentTab?>? SelectedDocumentChanged;
+    public DocumentTab? SelectedDocument { get; private set; }
 
     public void SelectDocument(DocumentTab? document)
     {
@@ -17,6 +17,6 @@ public sealed class DagEditSelectionService : ISelectionService
         }
 
         SelectedDocument = document;
-        SelectedDocumentChanged?.Invoke(document);
+        SelectedDocumentChanged?.Invoke(this, new SelectedDocumentChangedEventArgs(document));
     }
 }

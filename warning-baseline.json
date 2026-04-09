@@ -1,6 +1,7 @@
 {
-  "total_warning_count": 457,
-  "source": "GitHub Actions Verify run 24128316967",
-  "captured_at": "2026-04-08T09:30:44Z",
-  "notes": "Initial baseline after enabling DagEdit-style analyzers for cstudio. Warning count may decrease or stay flat, but must not increase."
+  "scope": "cstudio-owned-source-v2",
+  "total_warning_count": 0,
+  "source": "Local verification build aligned with GitHub Actions cstudio-owned warning scope",
+  "captured_at": "2026-04-09T00:00:00Z",
+  "notes": "Baseline reset after narrowing the warning gate to cstudio-owned source files and reducing local build warnings to zero."
 }

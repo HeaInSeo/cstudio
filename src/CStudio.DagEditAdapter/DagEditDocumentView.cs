@@ -10,6 +10,8 @@ public sealed class DagEditDocumentView : Grid
 {
     public DagEditDocumentView(DagEditShellContext context)
     {
+        ArgumentNullException.ThrowIfNull(context);
+
         RowDefinitions = new RowDefinitions("Auto,*");
 
         var sourceViewModel = context.ViewModel;
@@ -62,7 +64,7 @@ public sealed class DagEditDocumentView : Grid
             Text = "DagEdit Canvas",
             Foreground = new SolidColorBrush(Color.Parse("#F4F7FB")),
             FontWeight = FontWeight.SemiBold,
-            VerticalAlignment = VerticalAlignment.Center
+            VerticalAlignment = VerticalAlignment.Center,
         };
 
         var statsBadge = new Border
@@ -76,14 +78,14 @@ public sealed class DagEditDocumentView : Grid
             {
                 Text = $"{editorViewModel.NodeCount} nodes / {editorViewModel.ConnectionCount} links",
                 Foreground = new SolidColorBrush(Color.Parse("#9EB3D6")),
-                FontSize = 12
-            }
+                FontSize = 12,
+            },
         };
         Grid.SetColumn(statsBadge, 1);
 
         var chromeGrid = new Grid
         {
-            ColumnDefinitions = new ColumnDefinitions("*,Auto")
+            ColumnDefinitions = new ColumnDefinitions("*,Auto"),
         };
         chromeGrid.Children.Add(titleBlock);
         chromeGrid.Children.Add(statsBadge);
@@ -94,14 +96,14 @@ public sealed class DagEditDocumentView : Grid
             BorderBrush = new SolidColorBrush(Color.Parse("#252D3E")),
             BorderThickness = new Thickness(0, 0, 0, 1),
             Padding = new Thickness(12, 10),
-            Child = chromeGrid
+            Child = chromeGrid,
         };
 
         var host = new Border
         {
             Background = new SolidColorBrush(Color.Parse("#0E131D")),
             Padding = new Thickness(12),
-            Child = editor
+            Child = editor,
         };
 
         Children.Add(chrome);

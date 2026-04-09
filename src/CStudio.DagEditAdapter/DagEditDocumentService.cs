@@ -1,3 +1,4 @@
+using System.Globalization;
 using System.Text;
 using CStudio.Core.Models;
 using CStudio.Core.Services;
@@ -22,20 +23,20 @@ public sealed class DagEditDocumentService : IDocumentService
         var graphSummary = new StringBuilder()
             .AppendLine("DagEdit sample graph snapshot")
             .AppendLine()
-            .AppendLine($"NodeCount: {vm.NodeCount}")
-            .AppendLine($"ConnectionCount: {vm.ConnectionCount}")
-            .AppendLine($"ViewportLocation: {vm.ViewportLocation}")
-            .AppendLine($"ViewportScale: {vm.ViewportScale}")
+            .AppendLine(FormattableString.Invariant($"NodeCount: {vm.NodeCount}"))
+            .AppendLine(FormattableString.Invariant($"ConnectionCount: {vm.ConnectionCount}"))
+            .AppendLine(FormattableString.Invariant($"ViewportLocation: {vm.ViewportLocation}"))
+            .AppendLine(FormattableString.Invariant($"ViewportScale: {vm.ViewportScale}"))
             .AppendLine()
             .AppendLine("Nodes:")
-            .AppendJoin(Environment.NewLine, nodes.Select((n, index) => $"  {index + 1}. {n.NodeId} @ {n.Location}"))
+            .AppendJoin(Environment.NewLine, nodes.Select((n, index) => FormattableString.Invariant($"  {index + 1}. {n.NodeId} @ {n.Location}")))
             .ToString();
 
         var viewportSummary = new StringBuilder()
             .AppendLine("DagEdit viewport state")
             .AppendLine()
-            .AppendLine($"Location: {vm.ViewportLocation}")
-            .AppendLine($"Scale: {vm.ViewportScale}")
+            .AppendLine(FormattableString.Invariant($"Location: {vm.ViewportLocation}"))
+            .AppendLine(FormattableString.Invariant($"Scale: {vm.ViewportScale}"))
             .AppendLine()
             .AppendLine("This document is sourced from a real DagEdit.DagEditorViewModel instance through the adapter layer.")
             .ToString();
@@ -44,7 +45,7 @@ public sealed class DagEditDocumentService : IDocumentService
             .AppendLine("DagEdit connection snapshot")
             .AppendLine()
             .AppendJoin(Environment.NewLine, connections.Select((c, index) =>
-                $"  {index + 1}. {c.ConnectionId} : {c.SourceNodeId} -> {c.TargetNodeId}"))
+                FormattableString.Invariant($"  {index + 1}. {c.ConnectionId} : {c.SourceNodeId} -> {c.TargetNodeId}")))
             .ToString();
 
         return

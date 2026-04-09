@@ -5,9 +5,9 @@ namespace CStudio.Mock;
 
 public sealed class MockSelectionService : ISelectionService
 {
-    public DocumentTab? SelectedDocument { get; private set; }
+    public event EventHandler<SelectedDocumentChangedEventArgs>? SelectedDocumentChanged;
 
-    public event Action<DocumentTab?>? SelectedDocumentChanged;
+    public DocumentTab? SelectedDocument { get; private set; }
 
     public void SelectDocument(DocumentTab? document)
     {
@@ -17,6 +17,6 @@ public sealed class MockSelectionService : ISelectionService
         }
 
         SelectedDocument = document;
-        SelectedDocumentChanged?.Invoke(SelectedDocument);
+        SelectedDocumentChanged?.Invoke(this, new SelectedDocumentChangedEventArgs(SelectedDocument));
     }
 }

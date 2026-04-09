@@ -9,6 +9,7 @@ The operating model follows the same direction already used in `DagEdit`:
 - do not allow warning growth
 - reduce existing warning debt gradually
 - keep analyzer settings visible and honest
+- align rule exceptions with `DagEdit` where that improves signal quality
 
 ## Initial Policy
 
@@ -18,7 +19,7 @@ The operating model follows the same direction already used in `DagEdit`:
 - `AnalysisMode=All` is enabled
 - `StyleCop.Analyzers` is enabled across the repository
 - `TreatWarningsAsErrors` remains `false` for now
-- GitHub Actions verifies build output and blocks warning regressions
+- GitHub Actions verifies build output and blocks warning regressions on `cstudio`-owned source files
 
 This means the repository is not yet in full warning-as-error mode, but it is expected to trend toward lower warning counts without relaxing standards.
 
@@ -30,6 +31,7 @@ This means the repository is not yet in full warning-as-error mode, but it is ex
 - Analyzer configuration must not be weakened just to silence findings
 - Rider-visible warnings are treated as part of normal engineering quality, not optional cleanup
 - GitHub Actions is allowed to start in bootstrap mode until a committed warning baseline is established
+- The warning gate must count `cstudio` warnings only, not transitive warning debt from checked-out dependencies such as `DagEdit`
 
 ## Near-Term Goal
 
@@ -39,6 +41,6 @@ If a later batch introduces warnings due to expanded analyzers or new modules, t
 
 ## Follow-Up
 
-`warning-baseline.json` is now committed from the first confirmed CI run.
+`warning-baseline.json` is now reset to the narrower `cstudio`-owned warning scope used by GitHub Actions.
 
-From this point onward, the expected rule is simple: the warning count may go down or stay flat, but it must not go up.
+From this point onward, the expected rule is simple: the `cstudio` warning count may go down or stay flat, but it must not go up.

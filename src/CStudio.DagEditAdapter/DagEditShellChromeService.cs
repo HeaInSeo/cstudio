@@ -73,11 +73,13 @@ public sealed class DagEditShellChromeService : IShellChromeService
     public IReadOnlyList<ShellBadge> GetRightStatus()
     {
         var shellState = _context.ShellStateService;
+        var scale = shellState?.ActiveViewportScale ?? _context.ViewModel.ViewportScale;
+
         return
         [
             new ShellBadge("DagEdit Live Sample", "#8FD3A9"),
-            new ShellBadge($"Scale {(shellState?.ActiveViewportScale ?? _context.ViewModel.ViewportScale):F2}", "#8CA6D8"),
-            new ShellBadge(shellState?.SelectionKind ?? "Canvas", "#D7BE6A")
+            new ShellBadge($"Scale {scale:F2}", "#8CA6D8"),
+            new ShellBadge(shellState?.SelectionKind ?? "Canvas", "#D7BE6A"),
         ];
     }
 }

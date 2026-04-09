@@ -1,3 +1,4 @@
+using System;
 using Avalonia;
 using Avalonia.Controls.Primitives;
 using CStudio.Core.Models;
@@ -17,6 +18,8 @@ public sealed class DagEditShellStateService : IShellStateService
 
     public DagEditShellStateService(DagEditShellContext context)
     {
+        ArgumentNullException.ThrowIfNull(context);
+
         context.ShellStateService = this;
         ActiveViewportLocation = context.ViewModel.ViewportLocation;
         ActiveViewportScale = context.ViewModel.ViewportScale;
@@ -24,7 +27,7 @@ public sealed class DagEditShellStateService : IShellStateService
         SelectionLabel = "Canvas / None";
     }
 
-    public event Action? StateChanged;
+    public event EventHandler? StateChanged;
 
     public Point ActiveViewportLocation { get; private set; }
 
@@ -38,6 +41,9 @@ public sealed class DagEditShellStateService : IShellStateService
 
     public void AttachInteractiveEditor(DagEditor editor, DagEditorViewModel editorViewModel)
     {
+        ArgumentNullException.ThrowIfNull(editor);
+        ArgumentNullException.ThrowIfNull(editorViewModel);
+
         ActiveViewportLocation = editorViewModel.ViewportLocation;
         ActiveViewportScale = editorViewModel.ViewportScale;
         AppendLog("INFO", "Embedded DagEdit canvas attached");
@@ -48,7 +54,7 @@ public sealed class DagEditShellStateService : IShellStateService
             {
                 ActiveViewportLocation = location;
                 AppendLog("SYNC", $"Viewport moved to {location.X:0},{location.Y:0}");
-                StateChanged?.Invoke();
+                StateChanged?.Invoke(this, EventArgs.Empty);
             });
 
         global::System.ObservableExtensions.Subscribe(
@@ -57,7 +63,7 @@ public sealed class DagEditShellStateService : IShellStateService
             {
                 ActiveViewportScale = scale;
                 AppendLog("SYNC", $"Viewport scale changed to {scale:F2}");
-                StateChanged?.Invoke();
+                StateChanged?.Invoke(this, EventArgs.Empty);
             });
 
         global::System.ObservableExtensions.Subscribe(
@@ -65,12 +71,17 @@ public sealed class DagEditShellStateService : IShellStateService
             selectedItem =>
             {
                 UpdateSelection(selectedItem);
-                StateChanged?.Invoke();
+                StateChanged?.Invoke(this, EventArgs.Empty);
             });
     }
 
     private void UpdateSelection(object? selectedItem)
     {
+        static string ShortId(Guid? id)
+        {
+            return id?.ToString("N")[..8] ?? "unknown";
+        }
+
         if (selectedItem is DagItems { NodeItem: { } node })
         {
             SelectionKind = "Node";
@@ -100,10 +111,5 @@ public sealed class DagEditShellStateService : IShellStateService
         {
             _logs.RemoveAt(0);
         }
-    }
-
-    private static string ShortId(Guid? id)
-    {
-        return id?.ToString("N")[..8] ?? "unknown";
     }
 }

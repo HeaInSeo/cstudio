@@ -5,6 +5,9 @@ namespace CStudio.DagEditAdapter;
 
 public sealed class DagEditWorkspaceService : IWorkspaceService
 {
+    private static readonly string[] WorkspaceSections = { "Graph Sample", "Adapter Path", "Shell Mapping" };
+    private static readonly string[] DocumentSections = { "Dag Graph Overview", "Viewport State", "Connection Snapshot" };
+
     private readonly DagEditShellContext _context;
 
     public DagEditWorkspaceService(DagEditShellContext context)
@@ -24,10 +27,10 @@ public sealed class DagEditWorkspaceService : IWorkspaceService
 
         return
         [
-            new WorkspaceNode("DagEdit Workspace", ["Graph Sample", "Adapter Path", "Shell Mapping"]),
-            new WorkspaceNode("Graph Metrics", [$"Nodes: {vm.NodeCount}", $"Connections: {vm.ConnectionCount}", $"Scale: {vm.ViewportScale:F2}"]),
+            new WorkspaceNode("DagEdit Workspace", WorkspaceSections),
+            new WorkspaceNode("Graph Metrics", new[] { $"Nodes: {vm.NodeCount}", $"Connections: {vm.ConnectionCount}", $"Scale: {vm.ViewportScale:F2}" }),
             new WorkspaceNode("Visible Nodes", nodes),
-            new WorkspaceNode("Documents", ["Dag Graph Overview", "Viewport State", "Connection Snapshot"])
+            new WorkspaceNode("Documents", DocumentSections),
         ];
     }
 }

@@ -5,9 +5,9 @@ namespace CStudio.Core.Services;
 
 public interface ISelectionService
 {
-    DocumentTab? SelectedDocument { get; }
+    event EventHandler<SelectedDocumentChangedEventArgs>? SelectedDocumentChanged;
 
-    event Action<DocumentTab?>? SelectedDocumentChanged;
+    DocumentTab? SelectedDocument { get; }
 
     void SelectDocument(DocumentTab? document);
 }

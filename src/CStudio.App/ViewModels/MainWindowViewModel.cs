@@ -1,31 +1,45 @@
-﻿using System.Collections.Generic;
+using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using CStudio.Core.Models;
-using CStudio.Core.Services;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using CStudio.Core.Models;
+using CStudio.Core.Services;
+using CStudio.Mock;
 
 namespace CStudio.App.ViewModels;
 
-public partial class MainWindowViewModel : ViewModelBase
+internal sealed partial class MainWindowViewModel : ViewModelBase
 {
-    public MainWindowViewModel()
-        : this(
-            new Mock.MockWorkspaceService(),
-            new Mock.MockDocumentService(),
-            new Mock.MockSelectionService(),
-            new Mock.MockShellStateService(),
-            new Mock.MockPropertyPanelService(),
-            new Mock.MockLogService(),
-            new Mock.MockShellChromeService())
-    {
-    }
-
     private readonly ISelectionService _selectionService;
     private readonly IShellStateService _shellStateService;
     private readonly IPropertyPanelService _propertyPanelService;
     private readonly ILogService _logService;
     private readonly IShellChromeService _shellChromeService;
+
+    [ObservableProperty]
+    private DocumentTab selectedDocument = null!;
+
+    [ObservableProperty]
+    private object? selectedDocumentView;
+
+    [ObservableProperty]
+    private bool showSelectedDocumentText;
+
+    [ObservableProperty]
+    private string selectedWorkspaceLabel = string.Empty;
+
+    public MainWindowViewModel()
+        : this(
+            new MockWorkspaceService(),
+            new MockDocumentService(),
+            new MockSelectionService(),
+            new MockShellStateService(),
+            new MockPropertyPanelService(),
+            new MockLogService(),
+            new MockShellChromeService())
+    {
+    }
 
     public MainWindowViewModel(
         IWorkspaceService workspaceService,
@@ -36,6 +50,14 @@ public partial class MainWindowViewModel : ViewModelBase
         ILogService logService,
         IShellChromeService shellChromeService)
     {
+        ArgumentNullException.ThrowIfNull(workspaceService);
+        ArgumentNullException.ThrowIfNull(documentService);
+        ArgumentNullException.ThrowIfNull(selectionService);
+        ArgumentNullException.ThrowIfNull(shellStateService);
+        ArgumentNullException.ThrowIfNull(propertyPanelService);
+        ArgumentNullException.ThrowIfNull(logService);
+        ArgumentNullException.ThrowIfNull(shellChromeService);
+
         _selectionService = selectionService;
         _shellStateService = shellStateService;
         _propertyPanelService = propertyPanelService;
@@ -44,11 +66,11 @@ public partial class MainWindowViewModel : ViewModelBase
 
         Workspace = new ObservableCollection<WorkspaceNode>(workspaceService.GetWorkspace());
         Documents = new ObservableCollection<DocumentTab>(documentService.GetDocuments());
-        Properties = [];
+        Properties = new ObservableCollection<PropertyEntry>();
         Logs = new ObservableCollection<LogEntry>(logService.GetLogs());
         Menus = new ObservableCollection<ShellMenuItem>(shellChromeService.GetMenus());
         ActionBadges = new ObservableCollection<ShellBadge>(shellChromeService.GetActionBadges());
-        LeftStatus = [];
+        LeftStatus = new ObservableCollection<string>();
         RightStatus = new ObservableCollection<ShellBadge>(shellChromeService.GetRightStatus());
 
         WindowTitle = shellChromeService.GetWindowTitle();
@@ -86,17 +108,15 @@ public partial class MainWindowViewModel : ViewModelBase
 
     public ObservableCollection<ShellBadge> RightStatus { get; }
 
-    [ObservableProperty]
-    private DocumentTab selectedDocument = null!;
+    private static void ReplaceContents<T>(ObservableCollection<T> target, IReadOnlyList<T> items)
+    {
+        target.Clear();
 
-    [ObservableProperty]
-    private object? selectedDocumentView;
-
-    [ObservableProperty]
-    private bool showSelectedDocumentText;
-
-    [ObservableProperty]
-    private string selectedWorkspaceLabel = string.Empty;
+        foreach (var item in items)
+        {
+            target.Add(item);
+        }
+    }
 
     [RelayCommand]
     private void ActivateDocument(DocumentTab? document)
@@ -109,8 +129,12 @@ public partial class MainWindowViewModel : ViewModelBase
         _selectionService.SelectDocument(document);
     }
 
-    private void HandleSelectedDocumentChanged(DocumentTab? selectedDocument)
+    private void HandleSelectedDocumentChanged(object? sender, SelectedDocumentChangedEventArgs e)
     {
+        ArgumentNullException.ThrowIfNull(e);
+
+        var selectedDocument = e.SelectedDocument;
+
         if (selectedDocument is null)
         {
             return;
@@ -127,7 +151,7 @@ public partial class MainWindowViewModel : ViewModelBase
         ReplaceContents(RightStatus, _shellChromeService.GetRightStatus());
     }
 
-    private void HandleShellStateChanged()
+    private void HandleShellStateChanged(object? sender, EventArgs e)
     {
         if (SelectedDocument is null)
         {
@@ -139,15 +163,5 @@ public partial class MainWindowViewModel : ViewModelBase
         ReplaceContents(LeftStatus, _shellChromeService.GetLeftStatus(SelectedDocument));
         ReplaceContents(RightStatus, _shellChromeService.GetRightStatus());
         SelectedWorkspaceLabel = _shellChromeService.GetWorkspaceLabel(SelectedDocument);
-    }
-
-    private static void ReplaceContents<T>(ObservableCollection<T> target, IReadOnlyList<T> items)
-    {
-        target.Clear();
-
-        foreach (var item in items)
-        {
-            target.Add(item);
-        }
     }
 }

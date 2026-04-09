@@ -2,6 +2,6 @@
 
 namespace CStudio.App.ViewModels;
 
-public abstract class ViewModelBase : ObservableObject
+internal abstract class ViewModelBase : ObservableObject
 {
 }

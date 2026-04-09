@@ -2,7 +2,7 @@ using Avalonia.Controls;
 
 namespace CStudio.App.Views;
 
-public partial class MainWindow : Window
+internal sealed partial class MainWindow : Window
 {
     public MainWindow()
     {

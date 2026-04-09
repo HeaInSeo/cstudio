@@ -1,3 +1,4 @@
+using System.Globalization;
 using CStudio.Core.Models;
 using CStudio.Core.Services;
 
@@ -21,10 +22,10 @@ public sealed class DagEditPropertyPanelService : IPropertyPanelService
         [
             new PropertyEntry("Document", selectedDocument?.Title ?? "None"),
             new PropertyEntry("Source", "DagEdit Adapter"),
-            new PropertyEntry("Node Count", vm.NodeCount.ToString()),
-            new PropertyEntry("Connection Count", vm.ConnectionCount.ToString()),
+            new PropertyEntry("Node Count", vm.NodeCount.ToString(CultureInfo.InvariantCulture)),
+            new PropertyEntry("Connection Count", vm.ConnectionCount.ToString(CultureInfo.InvariantCulture)),
             new PropertyEntry("Viewport Location", (shellState?.ActiveViewportLocation ?? vm.ViewportLocation).ToString()),
-            new PropertyEntry("Viewport Scale", (shellState?.ActiveViewportScale ?? vm.ViewportScale).ToString("F2")),
+            new PropertyEntry("Viewport Scale", (shellState?.ActiveViewportScale ?? vm.ViewportScale).ToString("F2", CultureInfo.InvariantCulture)),
             new PropertyEntry("Selection Kind", shellState?.SelectionKind ?? "Canvas"),
             new PropertyEntry("Selection Label", shellState?.SelectionLabel ?? "Canvas / None")
         ];

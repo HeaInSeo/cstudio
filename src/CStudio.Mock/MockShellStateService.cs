@@ -4,9 +4,9 @@ namespace CStudio.Mock;
 
 public sealed class MockShellStateService : IShellStateService
 {
-    private Action? _stateChanged;
+    private EventHandler? _stateChanged;
 
-    public event Action? StateChanged
+    public event EventHandler? StateChanged
     {
         add => _stateChanged += value;
         remove => _stateChanged -= value;

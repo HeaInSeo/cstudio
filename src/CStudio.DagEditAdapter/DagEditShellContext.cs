@@ -7,6 +7,8 @@ public sealed class DagEditShellContext
 {
     public DagEditShellContext(DagEditorViewModel viewModel)
     {
+        ArgumentNullException.ThrowIfNull(viewModel);
+
         ViewModel = viewModel;
     }
 
@@ -19,7 +21,7 @@ public sealed class DagEditShellContext
         var vm = new DagEditorViewModel
         {
             ViewportLocation = new Point(120, 60),
-            ViewportScale = 1.25
+            ViewportScale = 1.25,
         };
 
         vm.ExecuteAddNode(new Point(120, 120));
