@@ -1,21 +1,23 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CStudio.Core.Models;
 using CStudio.Core.Services;
-using CStudio.Mock;
 
 namespace CStudio.App.ViewModels;
 
 internal sealed partial class MainWindowViewModel : ViewModelBase
 {
-    private readonly ISelectionService _selectionService;
-    private readonly IShellStateService _shellStateService;
-    private readonly IPropertyPanelService _propertyPanelService;
-    private readonly ILogService _logService;
-    private readonly IShellChromeService _shellChromeService;
+    private readonly IReadOnlyList<WorkspaceShellDefinition> _workspaceDefinitions;
+    private ISelectionService _selectionService = null!;
+    private IShellStateService _shellStateService = null!;
+    private IPropertyPanelService _propertyPanelService = null!;
+    private ILogService _logService = null!;
+    private IShellChromeService _shellChromeService = null!;
+    private int _activeWorkspaceIndex;
 
     [ObservableProperty]
     private DocumentTab selectedDocument = null!;
@@ -29,68 +31,51 @@ internal sealed partial class MainWindowViewModel : ViewModelBase
     [ObservableProperty]
     private string selectedWorkspaceLabel = string.Empty;
 
+    [ObservableProperty]
+    private RoleWorkspaceDescriptor activeWorkspace = null!;
+
+    [ObservableProperty]
+    private string workspaceSummary = string.Empty;
+
+    [ObservableProperty]
+    private string workspacePosition = string.Empty;
+
     public MainWindowViewModel()
-        : this(
-            new MockWorkspaceService(),
-            new MockDocumentService(),
-            new MockSelectionService(),
-            new MockShellStateService(),
-            new MockPropertyPanelService(),
-            new MockLogService(),
-            new MockShellChromeService())
+        : this(SampleWorkspaceCatalog.Create())
     {
     }
 
-    public MainWindowViewModel(
-        IWorkspaceService workspaceService,
-        IDocumentService documentService,
-        ISelectionService selectionService,
-        IShellStateService shellStateService,
-        IPropertyPanelService propertyPanelService,
-        ILogService logService,
-        IShellChromeService shellChromeService)
+    public MainWindowViewModel(IReadOnlyList<WorkspaceShellDefinition> workspaceDefinitions)
     {
-        ArgumentNullException.ThrowIfNull(workspaceService);
-        ArgumentNullException.ThrowIfNull(documentService);
-        ArgumentNullException.ThrowIfNull(selectionService);
-        ArgumentNullException.ThrowIfNull(shellStateService);
-        ArgumentNullException.ThrowIfNull(propertyPanelService);
-        ArgumentNullException.ThrowIfNull(logService);
-        ArgumentNullException.ThrowIfNull(shellChromeService);
+        ArgumentNullException.ThrowIfNull(workspaceDefinitions);
 
-        _selectionService = selectionService;
-        _shellStateService = shellStateService;
-        _propertyPanelService = propertyPanelService;
-        _logService = logService;
-        _shellChromeService = shellChromeService;
-
-        Workspace = new ObservableCollection<WorkspaceNode>(workspaceService.GetWorkspace());
-        Documents = new ObservableCollection<DocumentTab>(documentService.GetDocuments());
-        Properties = new ObservableCollection<PropertyEntry>();
-        Logs = new ObservableCollection<LogEntry>(logService.GetLogs());
-        Menus = new ObservableCollection<ShellMenuItem>(shellChromeService.GetMenus());
-        ActionBadges = new ObservableCollection<ShellBadge>(shellChromeService.GetActionBadges());
-        LeftStatus = new ObservableCollection<string>();
-        RightStatus = new ObservableCollection<ShellBadge>(shellChromeService.GetRightStatus());
-
-        WindowTitle = shellChromeService.GetWindowTitle();
-        Subtitle = shellChromeService.GetSubtitle();
-        StatusText = shellChromeService.GetStatusText();
-
-        _selectionService.SelectedDocumentChanged += HandleSelectedDocumentChanged;
-        _shellStateService.StateChanged += HandleShellStateChanged;
-
-        if (Documents.Count > 0)
+        if (workspaceDefinitions.Count == 0)
         {
-            _selectionService.SelectDocument(Documents[0]);
+            throw new ArgumentException("At least one workspace definition is required.", nameof(workspaceDefinitions));
         }
+
+        _workspaceDefinitions = workspaceDefinitions;
+
+        WorkspaceOptions = new ObservableCollection<RoleWorkspaceDescriptor>(workspaceDefinitions.Select(x => x.Workspace));
+        Menus = new ObservableCollection<ShellMenuItem>();
+        ActionBadges = new ObservableCollection<ShellBadge>();
+        Workspace = new ObservableCollection<WorkspaceNode>();
+        Documents = new ObservableCollection<DocumentTab>();
+        Properties = new ObservableCollection<PropertyEntry>();
+        Logs = new ObservableCollection<LogEntry>();
+        LeftStatus = new ObservableCollection<string>();
+        RightStatus = new ObservableCollection<ShellBadge>();
+
+        SwitchWorkspace(0);
     }
 
-    public string WindowTitle { get; }
+    public ObservableCollection<RoleWorkspaceDescriptor> WorkspaceOptions { get; }
 
-    public string Subtitle { get; }
+    public string WindowTitle => _shellChromeService.GetWindowTitle();
 
-    public string StatusText { get; }
+    public string Subtitle => _shellChromeService.GetSubtitle();
+
+    public string StatusText => _shellChromeService.GetStatusText();
 
     public ObservableCollection<ShellMenuItem> Menus { get; }
 
@@ -107,6 +92,8 @@ internal sealed partial class MainWindowViewModel : ViewModelBase
     public ObservableCollection<string> LeftStatus { get; }
 
     public ObservableCollection<ShellBadge> RightStatus { get; }
+
+    public bool CanSwitchWorkspaces => _workspaceDefinitions.Count > 1;
 
     private static void ReplaceContents<T>(ObservableCollection<T> target, IReadOnlyList<T> items)
     {
@@ -129,25 +116,55 @@ internal sealed partial class MainWindowViewModel : ViewModelBase
         _selectionService.SelectDocument(document);
     }
 
-    private void HandleSelectedDocumentChanged(object? sender, SelectedDocumentChangedEventArgs e)
+    [RelayCommand(CanExecute = nameof(CanSwitchWorkspaces))]
+    private void PreviousWorkspace()
     {
-        ArgumentNullException.ThrowIfNull(e);
+        SwitchWorkspace(_activeWorkspaceIndex - 1);
+    }
 
-        var selectedDocument = e.SelectedDocument;
+    [RelayCommand(CanExecute = nameof(CanSwitchWorkspaces))]
+    private void NextWorkspace()
+    {
+        SwitchWorkspace(_activeWorkspaceIndex + 1);
+    }
 
-        if (selectedDocument is null)
+    [RelayCommand]
+    private void SelectWorkspace(RoleWorkspaceDescriptor? workspace)
+    {
+        if (workspace is null)
         {
             return;
         }
 
-        SelectedDocument = selectedDocument;
-        SelectedDocumentView = selectedDocument.ContentView;
-        ShowSelectedDocumentText = selectedDocument.ContentView is null;
-        SelectedWorkspaceLabel = _shellChromeService.GetWorkspaceLabel(selectedDocument);
+        var index = _workspaceDefinitions
+            .Select((definition, position) => new { definition.Workspace.Kind, position })
+            .FirstOrDefault(x => x.Kind == workspace.Kind)?.position ?? -1;
 
-        ReplaceContents(Properties, _propertyPanelService.GetProperties(selectedDocument));
+        if (index >= 0)
+        {
+            SwitchWorkspace(index);
+        }
+    }
+
+    private void HandleSelectedDocumentChanged(object? sender, SelectedDocumentChangedEventArgs e)
+    {
+        ArgumentNullException.ThrowIfNull(e);
+
+        var document = e.SelectedDocument;
+
+        if (document is null)
+        {
+            return;
+        }
+
+        SelectedDocument = document;
+        SelectedDocumentView = document.ContentView;
+        ShowSelectedDocumentText = document.ContentView is null;
+        SelectedWorkspaceLabel = _shellChromeService.GetWorkspaceLabel(document);
+
+        ReplaceContents(Properties, _propertyPanelService.GetProperties(document));
         ReplaceContents(Logs, _logService.GetLogs());
-        ReplaceContents(LeftStatus, _shellChromeService.GetLeftStatus(selectedDocument));
+        ReplaceContents(LeftStatus, _shellChromeService.GetLeftStatus(document));
         ReplaceContents(RightStatus, _shellChromeService.GetRightStatus());
     }
 
@@ -163,5 +180,67 @@ internal sealed partial class MainWindowViewModel : ViewModelBase
         ReplaceContents(LeftStatus, _shellChromeService.GetLeftStatus(SelectedDocument));
         ReplaceContents(RightStatus, _shellChromeService.GetRightStatus());
         SelectedWorkspaceLabel = _shellChromeService.GetWorkspaceLabel(SelectedDocument);
+    }
+
+    private void SwitchWorkspace(int requestedIndex)
+    {
+        if (_selectionService is not null)
+        {
+            _selectionService.SelectedDocumentChanged -= HandleSelectedDocumentChanged;
+        }
+
+        if (_shellStateService is not null)
+        {
+            _shellStateService.StateChanged -= HandleShellStateChanged;
+        }
+
+        _activeWorkspaceIndex = NormalizeIndex(requestedIndex, _workspaceDefinitions.Count);
+
+        var definition = _workspaceDefinitions[_activeWorkspaceIndex];
+        ActiveWorkspace = definition.Workspace;
+        WorkspaceSummary = definition.Workspace.Summary;
+        WorkspacePosition = $"{_activeWorkspaceIndex + 1} / {_workspaceDefinitions.Count}";
+
+        _selectionService = definition.Composition.SelectionService;
+        _shellStateService = definition.Composition.ShellStateService;
+        _propertyPanelService = definition.Composition.PropertyPanelService;
+        _logService = definition.Composition.LogService;
+        _shellChromeService = definition.Composition.ShellChromeService;
+
+        ReplaceContents(Menus, _shellChromeService.GetMenus());
+        ReplaceContents(ActionBadges, _shellChromeService.GetActionBadges());
+        ReplaceContents(Workspace, definition.Composition.WorkspaceService.GetWorkspace());
+        ReplaceContents(Documents, definition.Composition.DocumentService.GetDocuments());
+        ReplaceContents(Logs, _logService.GetLogs());
+        ReplaceContents(LeftStatus, Array.Empty<string>());
+        ReplaceContents(RightStatus, _shellChromeService.GetRightStatus());
+
+        OnPropertyChanged(nameof(WindowTitle));
+        OnPropertyChanged(nameof(Subtitle));
+        OnPropertyChanged(nameof(StatusText));
+        OnPropertyChanged(nameof(CanSwitchWorkspaces));
+        PreviousWorkspaceCommand.NotifyCanExecuteChanged();
+        NextWorkspaceCommand.NotifyCanExecuteChanged();
+
+        _selectionService.SelectedDocumentChanged += HandleSelectedDocumentChanged;
+        _shellStateService.StateChanged += HandleShellStateChanged;
+
+        if (Documents.Count > 0)
+        {
+            _selectionService.SelectDocument(Documents[0]);
+            return;
+        }
+
+        SelectedWorkspaceLabel = ActiveWorkspace.Title;
+        SelectedDocument = new DocumentTab("No Document", ActiveWorkspace.Title, WorkspaceSummary);
+        SelectedDocumentView = null;
+        ShowSelectedDocumentText = true;
+        ReplaceContents(Properties, Array.Empty<PropertyEntry>());
+    }
+
+    private static int NormalizeIndex(int index, int count)
+    {
+        var normalized = index % count;
+        return normalized < 0 ? normalized + count : normalized;
     }
 }
