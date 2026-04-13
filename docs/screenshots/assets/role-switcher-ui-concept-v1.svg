@@ -1,0 +1,109 @@
+<svg width="1600" height="980" viewBox="0 0 1600 980" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1600" height="980" fill="#0B1119"/>
+  <rect x="18" y="18" width="1564" height="944" rx="16" fill="#121925" stroke="#283245" stroke-width="2"/>
+
+  <rect x="18" y="18" width="1564" height="36" rx="16" fill="#171F2B"/>
+  <rect x="18" y="38" width="1564" height="16" fill="#171F2B"/>
+  <text x="40" y="43" fill="#F5F8FC" font-family="Segoe UI, Arial, sans-serif" font-size="20" font-weight="700">cstudio</text>
+  <text x="122" y="43" fill="#D4DDEA" font-family="Segoe UI, Arial, sans-serif" font-size="15">File</text>
+  <text x="168" y="43" fill="#D4DDEA" font-family="Segoe UI, Arial, sans-serif" font-size="15">Workspace</text>
+  <text x="262" y="43" fill="#D4DDEA" font-family="Segoe UI, Arial, sans-serif" font-size="15">Window</text>
+  <text x="334" y="43" fill="#D4DDEA" font-family="Segoe UI, Arial, sans-serif" font-size="15">Tools</text>
+
+  <rect x="1248" y="24" width="84" height="24" rx="8" fill="#202938" stroke="#314159"/>
+  <rect x="1342" y="24" width="90" height="24" rx="8" fill="#202938" stroke="#314159"/>
+  <rect x="1442" y="24" width="104" height="24" rx="8" fill="#202938" stroke="#314159"/>
+  <text x="1270" y="41" fill="#7F90AC" font-family="Segoe UI, Arial, sans-serif" font-size="12">Tenant A</text>
+  <text x="1364" y="41" fill="#9CDCB2" font-family="Segoe UI, Arial, sans-serif" font-size="12">Authoring</text>
+  <text x="1470" y="41" fill="#C8D4E7" font-family="Segoe UI, Arial, sans-serif" font-size="12">Pop-out</text>
+
+  <rect x="34" y="74" width="52" height="808" fill="#111722"/>
+  <rect x="86" y="74" width="1" height="808" fill="#252D3E"/>
+  <rect x="44" y="98" width="32" height="32" rx="8" fill="#28364D"/>
+  <rect x="44" y="144" width="32" height="32" rx="8" fill="#1B2331"/>
+  <rect x="44" y="190" width="32" height="32" rx="8" fill="#1B2331"/>
+  <text x="55" y="119" fill="#EDF3FB" font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="700">W</text>
+  <text x="55" y="165" fill="#9AACC7" font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="700">D</text>
+  <text x="55" y="211" fill="#9AACC7" font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="700">R</text>
+
+  <rect x="102" y="86" width="270" height="770" rx="10" fill="#1A2230" stroke="#313D54"/>
+  <text x="124" y="115" fill="#AAB7CB" font-family="Segoe UI, Arial, sans-serif" font-size="12" letter-spacing="1.4">AUTHOR NAVIGATION</text>
+  <rect x="124" y="134" width="226" height="116" rx="8" fill="#202938"/>
+  <text x="142" y="160" fill="#F0F5FB" font-family="Segoe UI, Arial, sans-serif" font-size="16" font-weight="700">Graph Assets</text>
+  <rect x="142" y="174" width="190" height="24" rx="5" fill="#121822"/>
+  <rect x="142" y="204" width="190" height="24" rx="5" fill="#121822"/>
+  <text x="154" y="191" fill="#BCD0E5" font-family="Segoe UI, Arial, sans-serif" font-size="13">FrameGraph/Main</text>
+  <text x="154" y="221" fill="#BCD0E5" font-family="Segoe UI, Arial, sans-serif" font-size="13">Lighting/Resolve</text>
+  <rect x="124" y="266" width="226" height="106" rx="8" fill="#202938"/>
+  <text x="142" y="292" fill="#F0F5FB" font-family="Segoe UI, Arial, sans-serif" font-size="16" font-weight="700">Node Palette</text>
+  <text x="142" y="320" fill="#AEBED4" font-family="Segoe UI, Arial, sans-serif" font-size="13">Sources / Ops / Validation / Output</text>
+  <text x="142" y="344" fill="#73849E" font-family="Segoe UI, Arial, sans-serif" font-size="12">현재 역할 화면에 맞는 탐색만 보임</text>
+
+  <rect x="388" y="86" width="884" height="770" rx="10" fill="#121822" stroke="#313D54"/>
+  <rect x="388" y="86" width="884" height="44" rx="10" fill="#171F2C"/>
+  <rect x="388" y="108" width="884" height="22" fill="#171F2C"/>
+  <text x="412" y="115" fill="#96A8C4" font-family="Segoe UI, Arial, sans-serif" font-size="12" letter-spacing="1.4">CURRENT ROLE SCREEN</text>
+  <text x="412" y="146" fill="#F6F9FC" font-family="Segoe UI, Arial, sans-serif" font-size="22" font-weight="700">Pipeline Authoring</text>
+  <text x="652" y="146" fill="#7E90AC" font-family="Segoe UI, Arial, sans-serif" font-size="14">역할마다 중앙 메인 화면이 뚜렷하게 다를 수 있음</text>
+
+  <rect x="412" y="170" width="200" height="42" rx="8" fill="#1A2230"/>
+  <rect x="620" y="170" width="190" height="42" rx="8" fill="#1A2230"/>
+  <rect x="818" y="170" width="200" height="42" rx="8" fill="#1A2230"/>
+  <text x="428" y="192" fill="#F3F7FC" font-family="Segoe UI, Arial, sans-serif" font-size="15" font-weight="700">Dag Canvas</text>
+  <text x="428" y="206" fill="#8798B1" font-family="Segoe UI, Arial, sans-serif" font-size="12">Main screen</text>
+  <text x="636" y="192" fill="#F3F7FC" font-family="Segoe UI, Arial, sans-serif" font-size="15" font-weight="700">Build Preview</text>
+  <text x="834" y="192" fill="#F3F7FC" font-family="Segoe UI, Arial, sans-serif" font-size="15" font-weight="700">Validation</text>
+
+  <rect x="412" y="230" width="626" height="492" rx="10" fill="#171F2C" stroke="#2B374D"/>
+  <text x="440" y="270" fill="#F7FAFD" font-family="Segoe UI, Arial, sans-serif" font-size="30" font-weight="700">DagEdit Authoring Screen</text>
+  <text x="440" y="298" fill="#8D9DB5" font-family="Segoe UI, Arial, sans-serif" font-size="14">이 영역이 역할별 메인 스크린. Author / Analysis / Admin / Ops가 여기서 크게 달라진다.</text>
+  <rect x="486" y="362" width="156" height="80" rx="10" fill="#2A364B" stroke="#5F7DAA"/>
+  <rect x="694" y="468" width="166" height="82" rx="10" fill="#2A364B" stroke="#5F7DAA"/>
+  <rect x="902" y="382" width="98" height="52" rx="8" fill="#111722" stroke="#415677"/>
+  <path d="M642 402C672 402 676 486 694 508" stroke="#8CB1E7" stroke-width="4"/>
+  <path d="M860 508C886 508 886 412 902 408" stroke="#8CB1E7" stroke-width="4"/>
+  <text x="532" y="408" fill="#ECF3FB" font-family="Segoe UI, Arial, sans-serif" font-size="16" font-weight="700">Source</text>
+  <text x="748" y="514" fill="#ECF3FB" font-family="Segoe UI, Arial, sans-serif" font-size="16" font-weight="700">Resolve</text>
+  <text x="923" y="414" fill="#ECF3FB" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="700">Build</text>
+  <text x="440" y="670" fill="#7A8DA9" font-family="Segoe UI, Arial, sans-serif" font-size="13">중앙 메인 스크린을 새 창으로 분리해 다른 모니터에 띄우는 확장을 상정</text>
+
+  <rect x="1056" y="230" width="192" height="492" rx="10" fill="#181F2C" stroke="#2B374D"/>
+  <text x="1078" y="264" fill="#AAB7CB" font-family="Segoe UI, Arial, sans-serif" font-size="12" letter-spacing="1.4">CONTEXT PANEL</text>
+  <rect x="1078" y="286" width="148" height="54" rx="8" fill="#111722"/>
+  <text x="1092" y="309" fill="#ECF3FB" font-family="Segoe UI, Arial, sans-serif" font-size="15" font-weight="700">Selection</text>
+  <text x="1092" y="328" fill="#8E9FBA" font-family="Segoe UI, Arial, sans-serif" font-size="12">Source Node</text>
+  <text x="1078" y="376" fill="#90A0B8" font-family="Segoe UI, Arial, sans-serif" font-size="13">Node Count</text>
+  <text x="1166" y="376" fill="#F0F5FB" font-family="Segoe UI, Arial, sans-serif" font-size="13">12</text>
+  <text x="1078" y="408" fill="#90A0B8" font-family="Segoe UI, Arial, sans-serif" font-size="13">Validation</text>
+  <text x="1158" y="408" fill="#F0F5FB" font-family="Segoe UI, Arial, sans-serif" font-size="13">Ready</text>
+  <text x="1078" y="440" fill="#90A0B8" font-family="Segoe UI, Arial, sans-serif" font-size="13">Action</text>
+  <text x="1148" y="440" fill="#F0F5FB" font-family="Segoe UI, Arial, sans-serif" font-size="13">Run / Pin</text>
+  <text x="1078" y="482" fill="#6F819C" font-family="Segoe UI, Arial, sans-serif" font-size="12">이 패널도 역할에 따라 달라질 수 있지만,</text>
+  <text x="1078" y="500" fill="#6F819C" font-family="Segoe UI, Arial, sans-serif" font-size="12">중앙 스크린에 종속된 보조 패널로 이해한다.</text>
+
+  <rect x="412" y="740" width="836" height="88" rx="8" fill="#141B26"/>
+  <text x="438" y="770" fill="#AAB7CB" font-family="Segoe UI, Arial, sans-serif" font-size="12" letter-spacing="1.4">BOTTOM ROLE SWITCHER</text>
+  <rect x="438" y="786" width="164" height="30" rx="15" fill="#28364C" stroke="#87D9A8"/>
+  <rect x="618" y="786" width="164" height="30" rx="15" fill="#1A2230" stroke="#314159"/>
+  <rect x="798" y="786" width="164" height="30" rx="15" fill="#1A2230" stroke="#314159"/>
+  <rect x="978" y="786" width="164" height="30" rx="15" fill="#1A2230" stroke="#314159"/>
+  <text x="492" y="806" fill="#9FE3B4" font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="700">Author</text>
+  <text x="668" y="806" fill="#9DB0CA" font-family="Segoe UI, Arial, sans-serif" font-size="14">Analysis</text>
+  <text x="855" y="806" fill="#9DB0CA" font-family="Segoe UI, Arial, sans-serif" font-size="14">Admin</text>
+  <text x="1044" y="806" fill="#9DB0CA" font-family="Segoe UI, Arial, sans-serif" font-size="14">Ops</text>
+  <text x="1138" y="806" fill="#6F819C" font-family="Segoe UI, Arial, sans-serif" font-size="12">잠금/숨김/새 창 분리 가능</text>
+
+  <rect x="1290" y="214" width="246" height="230" rx="12" fill="#101620" stroke="#314159"/>
+  <text x="1314" y="248" fill="#F6F9FC" font-family="Segoe UI, Arial, sans-serif" font-size="18" font-weight="700">Multi-Window Hint</text>
+  <rect x="1318" y="274" width="84" height="52" rx="8" fill="#1F2A39"/>
+  <rect x="1418" y="294" width="84" height="52" rx="8" fill="#1F2A39"/>
+  <text x="1332" y="304" fill="#9FE3B4" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="700">Author</text>
+  <text x="1330" y="322" fill="#A4B5CD" font-family="Segoe UI, Arial, sans-serif" font-size="11">monitor A</text>
+  <text x="1431" y="324" fill="#8DB0E3" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="700">Analysis</text>
+  <text x="1432" y="342" fill="#A4B5CD" font-family="Segoe UI, Arial, sans-serif" font-size="11">monitor B</text>
+  <path d="M1402 300L1418 306" stroke="#7A8FAF" stroke-width="2"/>
+  <text x="1318" y="382" fill="#8091AB" font-family="Segoe UI, Arial, sans-serif" font-size="12">한 사람이 여러 역할을 동시에 띄워서 볼 수도 있고,</text>
+  <text x="1318" y="400" fill="#8091AB" font-family="Segoe UI, Arial, sans-serif" font-size="12">조직에 따라 특정 역할만 열리게 할 수도 있다.</text>
+
+  <text x="40" y="944" fill="#7C8EA9" font-family="Segoe UI, Arial, sans-serif" font-size="13">Concept: Bottom Role Switcher + Role Screens + Optional Multi-Window</text>
+</svg>
