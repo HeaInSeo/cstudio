@@ -6,7 +6,7 @@ using DagEdit;
 
 namespace CStudio.DagEditAdapter;
 
-public sealed class DagEditDocumentView : Grid
+internal sealed class DagEditDocumentView : Grid
 {
     public DagEditDocumentView(DagEditShellContext context)
     {

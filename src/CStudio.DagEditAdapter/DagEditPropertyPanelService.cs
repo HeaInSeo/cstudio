@@ -4,7 +4,7 @@ using CStudio.Core.Services;
 
 namespace CStudio.DagEditAdapter;
 
-public sealed class DagEditPropertyPanelService : IPropertyPanelService
+internal sealed class DagEditPropertyPanelService : IPropertyPanelService
 {
     private readonly DagEditShellContext _context;
 

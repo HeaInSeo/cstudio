@@ -3,7 +3,7 @@ using CStudio.Core.Services;
 
 namespace CStudio.DagEditAdapter;
 
-public sealed class DagEditShellChromeService : IShellChromeService
+internal sealed class DagEditShellChromeService : IShellChromeService
 {
     private readonly DagEditShellContext _context;
 

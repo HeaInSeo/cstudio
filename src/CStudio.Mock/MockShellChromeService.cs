@@ -5,6 +5,18 @@ namespace CStudio.Mock;
 
 public sealed class MockShellChromeService : IShellChromeService
 {
+    private readonly MockWorkspaceProfile _profile;
+
+    public MockShellChromeService()
+        : this(MockWorkspaceProfiles.CreateDefault())
+    {
+    }
+
+    public MockShellChromeService(MockWorkspaceProfile profile)
+    {
+        _profile = profile;
+    }
+
     public string GetWindowTitle()
     {
         return "cstudio";
@@ -12,17 +24,17 @@ public sealed class MockShellChromeService : IShellChromeService
 
     public string GetSubtitle()
     {
-        return "GPU-Reshape Studio inspired shell";
+        return _profile.Subtitle;
     }
 
     public string GetStatusText()
     {
-        return "Sprint 02 shell contracts / mock data";
+        return _profile.StatusText;
     }
 
     public string GetWorkspaceLabel(DocumentTab? selectedDocument)
     {
-        return $"RenderLab / {selectedDocument?.Title ?? "No Document"}";
+        return $"{_profile.WorkspaceLabelPrefix} / {selectedDocument?.Title ?? "No Document"}";
     }
 
     public IReadOnlyList<ShellMenuItem> GetMenus()
@@ -39,31 +51,18 @@ public sealed class MockShellChromeService : IShellChromeService
 
     public IReadOnlyList<ShellBadge> GetActionBadges()
     {
-        return
-        [
-            new ShellBadge("Workspace", "#7B8AA6"),
-            new ShellBadge("Documents", "#8CA6D8"),
-            new ShellBadge("Contract Shell", "#D7BE6A")
-        ];
+        return _profile.ActionBadges;
     }
 
     public IReadOnlyList<string> GetLeftStatus(DocumentTab? selectedDocument)
     {
-        return
-        [
-            "Workspace: RenderLab",
-            $"Document: {selectedDocument?.Title ?? "None"}",
-            "Detached Backend"
-        ];
+        return _profile.BaseLeftStatus
+            .Concat([$"Document: {selectedDocument?.Title ?? "None"}"])
+            .ToArray();
     }
 
     public IReadOnlyList<ShellBadge> GetRightStatus()
     {
-        return
-        [
-            new ShellBadge("Discovery Idle", "#6E7A90"),
-            new ShellBadge("Contracts Active", "#8CA6D8"),
-            new ShellBadge("Sprint 02", "#D7BE6A")
-        ];
+        return _profile.RightStatus;
     }
 }

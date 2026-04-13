@@ -3,7 +3,7 @@ using CStudio.Core.Services;
 
 namespace CStudio.DagEditAdapter;
 
-public sealed class DagEditLogService : ILogService
+internal sealed class DagEditLogService : ILogService
 {
     private readonly DagEditShellContext _context;
 

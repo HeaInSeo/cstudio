@@ -5,7 +5,7 @@ using CStudio.Core.Services;
 
 namespace CStudio.DagEditAdapter;
 
-public sealed class DagEditDocumentService : IDocumentService
+internal sealed class DagEditDocumentService : IDocumentService
 {
     private readonly DagEditShellContext _context;
 
