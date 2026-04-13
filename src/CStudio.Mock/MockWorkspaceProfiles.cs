@@ -8,10 +8,10 @@ public static class MockWorkspaceProfiles
     {
         WorkspaceNode[] workspaceNodes =
         [
-            new("Workspace", ["Overview", "Launch Config", "Recent Sessions"]),
-            new("Pipelines", ["FrameGraph/Main", "Lighting/Resolve", "Post/ToneMap"]),
-            new("Shaders", ["VS_Main", "PS_GBuffer", "CS_BloomDownsample"]),
-            new("Reports", ["Instrumentation", "Validation", "Messages"]),
+            new("Workspace", new[] { "Overview", "Launch Config", "Recent Sessions" }),
+            new("Pipelines", new[] { "FrameGraph/Main", "Lighting/Resolve", "Post/ToneMap" }),
+            new("Shaders", new[] { "VS_Main", "PS_GBuffer", "CS_BloomDownsample" }),
+            new("Reports", new[] { "Instrumentation", "Validation", "Messages" }),
         ];
 
         DocumentTab[] documents =
@@ -53,7 +53,7 @@ public static class MockWorkspaceProfiles
             new("Contract Shell", "#D7BE6A"),
         ];
 
-        string[] baseLeftStatus = ["Workspace: RenderLab", "Detached Backend", "Mode: Sprint 02"];
+        string[] baseLeftStatus = new[] { "Workspace: RenderLab", "Detached Backend", "Mode: Sprint 02" };
 
         ShellBadge[] rightStatus =
         [
@@ -83,9 +83,9 @@ public static class MockWorkspaceProfiles
     {
         WorkspaceNode[] workspaceNodes =
         [
-            new("Sessions", ["nightly-0411", "nightly-0410", "ad-hoc-debug"]),
-            new("Reports", ["Frame timings", "Node diffs", "Failure clusters"]),
-            new("Comparisons", ["baseline vs canary", "cpu vs gpu", "prod vs staging"]),
+            new("Sessions", new[] { "nightly-0411", "nightly-0410", "ad-hoc-debug" }),
+            new("Reports", new[] { "Frame timings", "Node diffs", "Failure clusters" }),
+            new("Comparisons", new[] { "baseline vs canary", "cpu vs gpu", "prod vs staging" }),
         ];
 
         DocumentTab[] documents =
@@ -126,7 +126,7 @@ public static class MockWorkspaceProfiles
             new("Comparison", "#D7BE6A"),
         ];
 
-        string[] baseLeftStatus = ["Scope: nightly-0411", "Mode: inspection", "Focus: report diagnostics"];
+        string[] baseLeftStatus = new[] { "Scope: nightly-0411", "Mode: inspection", "Focus: report diagnostics" };
 
         ShellBadge[] rightStatus =
         [
@@ -156,9 +156,9 @@ public static class MockWorkspaceProfiles
     {
         WorkspaceNode[] workspaceNodes =
         [
-            new("Tools", ["dag-compile", "graph-validate", "artifact-sync"]),
-            new("Policies", ["cluster-policy", "sandbox-policy", "tenant-allowlist"]),
-            new("Queues", ["pending validation", "ready to register", "failed builds"]),
+            new("Tools", new[] { "dag-compile", "graph-validate", "artifact-sync" }),
+            new("Policies", new[] { "cluster-policy", "sandbox-policy", "tenant-allowlist" }),
+            new("Queues", new[] { "pending validation", "ready to register", "failed builds" }),
         ];
 
         DocumentTab[] documents =
@@ -199,7 +199,7 @@ public static class MockWorkspaceProfiles
             new("Registration", "#8FD3A9"),
         ];
 
-        string[] baseLeftStatus = ["Scope: authoring policy", "Queue: 3 pending", "Mode: admin"];
+        string[] baseLeftStatus = new[] { "Scope: authoring policy", "Queue: 3 pending", "Mode: admin" };
 
         ShellBadge[] rightStatus =
         [
@@ -229,9 +229,9 @@ public static class MockWorkspaceProfiles
     {
         WorkspaceNode[] workspaceNodes =
         [
-            new("Clusters", ["prod-east", "prod-west", "staging"]),
-            new("Namespaces", ["pipelines", "platform", "observability"]),
-            new("Workloads", ["dag-runner", "artifact-api", "ops-console"]),
+            new("Clusters", new[] { "prod-east", "prod-west", "staging" }),
+            new("Namespaces", new[] { "pipelines", "platform", "observability" }),
+            new("Workloads", new[] { "dag-runner", "artifact-api", "ops-console" }),
         ];
 
         DocumentTab[] documents =
@@ -272,7 +272,7 @@ public static class MockWorkspaceProfiles
             new("Diagnostics", "#D7BE6A"),
         ];
 
-        string[] baseLeftStatus = ["Cluster: prod-east", "Namespace: pipelines", "Mode: operations"];
+        string[] baseLeftStatus = new[] { "Cluster: prod-east", "Namespace: pipelines", "Mode: operations" };
 
         ShellBadge[] rightStatus =
         [
