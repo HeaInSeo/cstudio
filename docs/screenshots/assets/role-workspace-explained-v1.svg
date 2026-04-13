@@ -1,0 +1,83 @@
+<svg width="1600" height="980" viewBox="0 0 1600 980" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1600" height="980" fill="#0D121B"/>
+  <text x="50" y="56" fill="#F4F7FB" font-family="Segoe UI, Arial, sans-serif" font-size="30" font-weight="700">CStudio 역할 전환 UI 설명</text>
+  <text x="50" y="88" fill="#91A0B8" font-family="Segoe UI, Arial, sans-serif" font-size="16">왼쪽은 처음 제안과 가까운 해석, 오른쪽은 현재 문서가 실제로 의도한 구조</text>
+
+  <rect x="40" y="120" width="720" height="800" rx="18" fill="#121925" stroke="#293246" stroke-width="2"/>
+  <rect x="840" y="120" width="720" height="800" rx="18" fill="#121925" stroke="#293246" stroke-width="2"/>
+
+  <text x="70" y="165" fill="#FFCC8F" font-family="Segoe UI, Arial, sans-serif" font-size="24" font-weight="700">A. 화면 전체가 장면처럼 바뀌는 해석</text>
+  <text x="870" y="165" fill="#9FE3B4" font-family="Segoe UI, Arial, sans-serif" font-size="24" font-weight="700">B. 고정 셸 안에서 역할만 바뀌는 해석</text>
+
+  <rect x="80" y="210" width="640" height="120" rx="12" fill="#1A2231"/>
+  <text x="104" y="248" fill="#F4F7FB" font-family="Segoe UI, Arial, sans-serif" font-size="20" font-weight="700">Pipeline Scene</text>
+  <text x="104" y="278" fill="#A9B8CF" font-family="Segoe UI, Arial, sans-serif" font-size="15">왼쪽 트리, 가운데 DagEdit, 오른쪽 속성</text>
+  <rect x="80" y="350" width="640" height="120" rx="12" fill="#1A2231"/>
+  <text x="104" y="388" fill="#F4F7FB" font-family="Segoe UI, Arial, sans-serif" font-size="20" font-weight="700">Analysis Scene</text>
+  <text x="104" y="418" fill="#A9B8CF" font-family="Segoe UI, Arial, sans-serif" font-size="15">리포트, 비교 화면, 분석 메타데이터</text>
+  <rect x="80" y="490" width="640" height="120" rx="12" fill="#1A2231"/>
+  <text x="104" y="528" fill="#F4F7FB" font-family="Segoe UI, Arial, sans-serif" font-size="20" font-weight="700">Admin Scene</text>
+  <text x="104" y="558" fill="#A9B8CF" font-family="Segoe UI, Arial, sans-serif" font-size="15">정책 편집, 도구 등록, 검증 큐</text>
+  <rect x="80" y="630" width="640" height="120" rx="12" fill="#1A2231"/>
+  <text x="104" y="668" fill="#F4F7FB" font-family="Segoe UI, Arial, sans-serif" font-size="20" font-weight="700">Ops Scene</text>
+  <text x="104" y="698" fill="#A9B8CF" font-family="Segoe UI, Arial, sans-serif" font-size="15">클러스터 상태, 워크로드, 이벤트, 로그</text>
+
+  <path d="M320 795H480" stroke="#FFCC8F" stroke-width="4" stroke-dasharray="10 10"/>
+  <text x="255" y="832" fill="#FFCC8F" font-family="Segoe UI, Arial, sans-serif" font-size="18">&lt;  장면 자체를 좌우로 넘김  &gt;</text>
+
+  <text x="86" y="865" fill="#D7E0ED" font-family="Segoe UI, Arial, sans-serif" font-size="16">느낌:</text>
+  <text x="148" y="865" fill="#A9B8CF" font-family="Segoe UI, Arial, sans-serif" font-size="16">Pipeline 앱, Analysis 앱, Admin 앱, Ops 앱이 번갈아 보이는 것처럼 느껴짐</text>
+  <text x="86" y="895" fill="#D7E0ED" font-family="Segoe UI, Arial, sans-serif" font-size="16">문제:</text>
+  <text x="148" y="895" fill="#A9B8CF" font-family="Segoe UI, Arial, sans-serif" font-size="16">Rider처럼 하나의 안정된 셸 안에서 일하는 감각이 약해질 수 있음</text>
+
+  <rect x="880" y="210" width="640" height="560" rx="14" fill="#171F2C" stroke="#33405A"/>
+  <rect x="880" y="210" width="640" height="42" rx="14" fill="#1C2433"/>
+  <rect x="880" y="238" width="640" height="14" fill="#1C2433"/>
+  <text x="902" y="237" fill="#F4F7FB" font-family="Segoe UI, Arial, sans-serif" font-size="18" font-weight="700">cstudio</text>
+  <text x="970" y="237" fill="#D7E0ED" font-family="Segoe UI, Arial, sans-serif" font-size="15">File   Workspace   Window</text>
+  <rect x="1146" y="219" width="230" height="24" rx="8" fill="#111823" stroke="#33405A"/>
+  <text x="1160" y="236" fill="#9FE3B4" font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="700">&lt; Pipeline Authoring &gt;</text>
+
+  <rect x="892" y="265" width="48" height="470" fill="#111722"/>
+  <rect x="956" y="265" width="180" height="470" rx="8" fill="#202938"/>
+  <rect x="1154" y="265" width="210" height="470" rx="8" fill="#202938"/>
+  <rect x="1382" y="265" width="126" height="470" rx="8" fill="#202938"/>
+  <text x="973" y="292" fill="#EAF0F8" font-family="Segoe UI, Arial, sans-serif" font-size="16" font-weight="700">좌측 탐색</text>
+  <text x="1174" y="292" fill="#EAF0F8" font-family="Segoe UI, Arial, sans-serif" font-size="16" font-weight="700">중앙 문서 호스트</text>
+  <text x="1400" y="292" fill="#EAF0F8" font-family="Segoe UI, Arial, sans-serif" font-size="16" font-weight="700">우측 패널</text>
+
+  <rect x="971" y="320" width="150" height="34" rx="6" fill="#111722"/>
+  <rect x="971" y="364" width="150" height="34" rx="6" fill="#111722"/>
+  <rect x="971" y="408" width="150" height="34" rx="6" fill="#111722"/>
+  <text x="985" y="342" fill="#B8C6DB" font-family="Segoe UI, Arial, sans-serif" font-size="13">역할별 트리 내용</text>
+  <text x="985" y="386" fill="#B8C6DB" font-family="Segoe UI, Arial, sans-serif" font-size="13">Authoring이면 자산</text>
+  <text x="985" y="430" fill="#B8C6DB" font-family="Segoe UI, Arial, sans-serif" font-size="13">Analysis면 리포트</text>
+
+  <rect x="1172" y="322" width="172" height="88" rx="10" fill="#2A364B" stroke="#5E7AA5"/>
+  <rect x="1172" y="430" width="172" height="88" rx="10" fill="#2A364B" stroke="#5E7AA5"/>
+  <rect x="1172" y="538" width="172" height="88" rx="10" fill="#2A364B" stroke="#5E7AA5"/>
+  <text x="1212" y="374" fill="#F4F7FB" font-family="Segoe UI, Arial, sans-serif" font-size="16" font-weight="700">같은 셸</text>
+  <text x="1188" y="404" fill="#B7C5DB" font-family="Segoe UI, Arial, sans-serif" font-size="13">가운데 내용만 역할에 따라 바뀜</text>
+  <text x="1196" y="480" fill="#F4F7FB" font-family="Segoe UI, Arial, sans-serif" font-size="16" font-weight="700">예: DagEdit</text>
+  <text x="1187" y="510" fill="#B7C5DB" font-family="Segoe UI, Arial, sans-serif" font-size="13">또는 분석 문서 / 정책 편집</text>
+  <text x="1191" y="588" fill="#F4F7FB" font-family="Segoe UI, Arial, sans-serif" font-size="16" font-weight="700">위치는 유지</text>
+  <text x="1182" y="618" fill="#B7C5DB" font-family="Segoe UI, Arial, sans-serif" font-size="13">사용자는 길을 잃지 않음</text>
+
+  <rect x="1396" y="320" width="98" height="34" rx="6" fill="#111722"/>
+  <rect x="1396" y="364" width="98" height="34" rx="6" fill="#111722"/>
+  <rect x="1396" y="408" width="98" height="34" rx="6" fill="#111722"/>
+  <text x="1410" y="342" fill="#B8C6DB" font-family="Segoe UI, Arial, sans-serif" font-size="13">속성</text>
+  <text x="1410" y="386" fill="#B8C6DB" font-family="Segoe UI, Arial, sans-serif" font-size="13">상태</text>
+  <text x="1410" y="430" fill="#B8C6DB" font-family="Segoe UI, Arial, sans-serif" font-size="13">액션</text>
+
+  <rect x="892" y="748" width="616" height="14" fill="#0F141D"/>
+  <text x="915" y="759" fill="#91A0B8" font-family="Segoe UI, Arial, sans-serif" font-size="12">하단 상태/로그 위치도 유지됨</text>
+
+  <path d="M1110 820H1288" stroke="#9FE3B4" stroke-width="4" stroke-dasharray="10 10"/>
+  <text x="1010" y="858" fill="#9FE3B4" font-family="Segoe UI, Arial, sans-serif" font-size="18">&lt;  역할 워크스페이스만 좌우 전환  &gt;</text>
+
+  <text x="886" y="892" fill="#D7E0ED" font-family="Segoe UI, Arial, sans-serif" font-size="16">느낌:</text>
+  <text x="948" y="892" fill="#A9B8CF" font-family="Segoe UI, Arial, sans-serif" font-size="16">같은 cstudio 안에서 현재 역할만 바뀜</text>
+  <text x="886" y="922" fill="#D7E0ED" font-family="Segoe UI, Arial, sans-serif" font-size="16">핵심:</text>
+  <text x="948" y="922" fill="#A9B8CF" font-family="Segoe UI, Arial, sans-serif" font-size="16">고정된 Rider형 셸 + 역할별 내용 교체</text>
+</svg>
