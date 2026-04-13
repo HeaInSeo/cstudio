@@ -8,7 +8,7 @@ using ReactiveUI;
 
 namespace CStudio.DagEditAdapter;
 
-public sealed class DagEditShellStateService : IShellStateService
+internal sealed class DagEditShellStateService : IShellStateService
 {
     private readonly List<LogEntry> _logs =
     [
@@ -39,7 +39,7 @@ public sealed class DagEditShellStateService : IShellStateService
 
     public IReadOnlyList<LogEntry> Logs => _logs;
 
-    public void AttachInteractiveEditor(DagEditor editor, DagEditorViewModel editorViewModel)
+    internal void AttachInteractiveEditor(DagEditor editor, DagEditorViewModel editorViewModel)
     {
         ArgumentNullException.ThrowIfNull(editor);
         ArgumentNullException.ThrowIfNull(editorViewModel);

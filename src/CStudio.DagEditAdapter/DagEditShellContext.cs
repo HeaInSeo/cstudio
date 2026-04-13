@@ -3,7 +3,7 @@ using DagEdit;
 
 namespace CStudio.DagEditAdapter;
 
-public sealed class DagEditShellContext
+internal sealed class DagEditShellContext
 {
     public DagEditShellContext(DagEditorViewModel viewModel)
     {

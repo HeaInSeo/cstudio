@@ -3,7 +3,7 @@ using CStudio.Core.Services;
 
 namespace CStudio.DagEditAdapter;
 
-public sealed class DagEditSelectionService : ISelectionService
+internal sealed class DagEditSelectionService : ISelectionService
 {
     public event EventHandler<SelectedDocumentChangedEventArgs>? SelectedDocumentChanged;
 

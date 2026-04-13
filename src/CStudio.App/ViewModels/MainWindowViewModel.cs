@@ -105,6 +105,12 @@ internal sealed partial class MainWindowViewModel : ViewModelBase
         }
     }
 
+    private static int NormalizeIndex(int index, int count)
+    {
+        var normalized = index % count;
+        return normalized < 0 ? normalized + count : normalized;
+    }
+
     [RelayCommand]
     private void ActivateDocument(DocumentTab? document)
     {
@@ -236,11 +242,5 @@ internal sealed partial class MainWindowViewModel : ViewModelBase
         SelectedDocumentView = null;
         ShowSelectedDocumentText = true;
         ReplaceContents(Properties, Array.Empty<PropertyEntry>());
-    }
-
-    private static int NormalizeIndex(int index, int count)
-    {
-        var normalized = index % count;
-        return normalized < 0 ? normalized + count : normalized;
     }
 }

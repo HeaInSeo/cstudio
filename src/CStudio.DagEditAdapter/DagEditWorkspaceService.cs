@@ -3,7 +3,7 @@ using CStudio.Core.Services;
 
 namespace CStudio.DagEditAdapter;
 
-public sealed class DagEditWorkspaceService : IWorkspaceService
+internal sealed class DagEditWorkspaceService : IWorkspaceService
 {
     private static readonly string[] WorkspaceSections = { "Graph Sample", "Adapter Path", "Shell Mapping" };
     private static readonly string[] DocumentSections = { "Dag Graph Overview", "Viewport State", "Connection Snapshot" };
