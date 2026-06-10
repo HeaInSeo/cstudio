@@ -24,12 +24,12 @@ jobs:
 
     steps:
       - name: Checkout cstudio
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           fetch-depth: 0
 
       - name: Checkout DagEdit dependency
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           repository: HeaInSeo/DagEdit
           path: external/DagEdit
@@ -131,7 +131,7 @@ jobs:
 
       - name: Upload build log
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: cstudio-build-log
           path: /tmp/cstudio-build.txt
@@ -139,7 +139,7 @@ jobs:
 
       - name: Upload cstudio-owned warnings
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: cstudio-owned-warnings
           path: /tmp/cstudio-owned-warnings.txt
